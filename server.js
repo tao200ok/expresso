@@ -16,6 +16,10 @@ app.use(bodyParser.json());
 const errorHandler = require("errorhandler");
 app.use(errorHandler());
 
+// Routing middlewares
+const api = require("./api/api");
+app.use("/api", api);
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
