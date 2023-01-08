@@ -5,7 +5,7 @@ const db = new sqlite3.Database(
 );
 
 function validate(data) {
-  const { name, position, wage, isCurrentEmployee } = data;
+  const { name, position, wage } = data;
   if (!name || !position || !wage) {
     return false;
   }
@@ -63,6 +63,30 @@ employees.post("/", (req, res, next) => {
       return res.status(201).json({ employee: newEmployee });
     });
   });
+});
+
+// Retrieve Employee with id :employeeId from database
+employees.param("employeeId", (req, res, next, employeeId) => {
+  const query = `SELECT * FROM Employee WHERE id=${employeeId}`;
+  db.get(query, [], function (err, employee) {
+    if (err) {
+      return next(err);
+    }
+
+    // Employee with :employeeId not in database
+    if (!employee) {
+      return res.status(404).send();
+    }
+
+    // Attach found artist to request object and proceed
+    req.employee = employee;
+    next();
+  });
+});
+
+// Retrieve an Employee
+employees.get("/:employeeId", (req, res) => {
+  return res.status(200).json({ employee: req.employee });
 });
 
 module.exports = employees;
