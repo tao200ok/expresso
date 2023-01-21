@@ -95,21 +95,16 @@ employees.put("/:employeeId", (req, res, next) => {
   if (updatedEmployee === false) {
     return res.status(400).send();
   }
-  // update existing employee data 'req.employee' with employee data recieved in update request 'updatedEmployee'.
-  updatedEmployee = { ...req.employee, ...updatedEmployee };
 
   // Update employee data in database
-  const query =
-    "UPDATE Employee SET name=$name, position=$position, wage=$wage, is_current_employee=$isCurrentEmployee WHERE id=$id";
-  // NOTE: Below, 'isCurrentEmployee' is the updated employee status recieved in update request(if any) while 'is_current_employee' is the unchanged employee status retrieved from database query (used incase none is recieved in the update request).
-  const { id, name, position, wage, isCurrentEmployee, is_current_employee } =
-    updatedEmployee;
+  const query = `UPDATE Employee SET name=$name, position=$position, wage=$wage WHERE id=$id`;
+
+  const { name, position, wage } = updatedEmployee;
   const params = {
     $name: name,
     $position: position,
     $wage: wage,
-    $isCurrentEmployee: isCurrentEmployee || is_current_employee,
-    $id: id,
+    $id: req.params.employeeId,
   };
   db.run(query, params, function (err) {
     if (err) {
