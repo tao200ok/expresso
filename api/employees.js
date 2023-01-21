@@ -88,6 +88,7 @@ employees.get("/:employeeId", (req, res) => {
   return res.status(200).json({ employee: req.employee });
 });
 
+// Update an Employee
 employees.put("/:employeeId", (req, res, next) => {
   // Validate employee data recieved in request.
   let updatedEmployee = validate(req.body.employee);
@@ -118,6 +119,26 @@ employees.put("/:employeeId", (req, res, next) => {
         return next(err);
       }
       res.status(200).json({ employee: updatedEmployee });
+    });
+  });
+});
+
+// Change an Employee's employment status
+employees.delete("/:employeeId", (req, res, next) => {
+  const query = `UPDATE Employee SET is_current_employee=0 WHERE id=$id`;
+  const params = { $id: req.params.employeeId };
+  db.run(query, params, function (err) {
+    if (err) {
+      return next(err);
+    }
+
+    const query = `SELECT * FROM Employee WHERE id=$id`;
+    const params = { $id: req.params.employeeId };
+    db.get(query, params, function (err, deletedEmployee) {
+      if (err) {
+        return next(err);
+      }
+      return res.status(200).json({ employee: deletedEmployee });
     });
   });
 });
