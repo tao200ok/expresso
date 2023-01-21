@@ -88,4 +88,43 @@ employees.get("/:employeeId", (req, res) => {
   return res.status(200).json({ employee: req.employee });
 });
 
+employees.put("/:employeeId", (req, res, next) => {
+  // Validate employee data recieved in request.
+  let updatedEmployee = validate(req.body.employee);
+  // Handle incomplete employee data.
+  if (updatedEmployee === false) {
+    return res.status(400).send();
+  }
+  // update existing employee data 'req.employee' with employee data recieved in update request 'updatedEmployee'.
+  updatedEmployee = { ...req.employee, ...updatedEmployee };
+
+  // Update employee data in database
+  const query =
+    "UPDATE Employee SET name=$name, position=$position, wage=$wage, is_current_employee=$isCurrentEmployee WHERE id=$id";
+  // NOTE: Below, 'isCurrentEmployee' is the updated employee status recieved in update request(if any) while 'is_current_employee' is the unchanged employee status retrieved from database query (used incase none is recieved in the update request).
+  const { id, name, position, wage, isCurrentEmployee, is_current_employee } =
+    updatedEmployee;
+  const params = {
+    $name: name,
+    $position: position,
+    $wage: wage,
+    $isCurrentEmployee: isCurrentEmployee || is_current_employee,
+    $id: id,
+  };
+  db.run(query, params, function (err) {
+    if (err) {
+      return next(err);
+    }
+
+    // Retrieve and send newly updated employee
+    const query = `SELECT * FROM Employee WHERE id=${req.params.employeeId}`;
+    db.get(query, [], function (err, updatedEmployee) {
+      if (err) {
+        return next(err);
+      }
+      res.status(200).json({ employee: updatedEmployee });
+    });
+  });
+});
+
 module.exports = employees;
