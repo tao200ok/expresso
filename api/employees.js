@@ -87,7 +87,9 @@ employees.param("employeeId", (req, res, next, employeeId) => {
 
     // Employee with :employeeId not in database
     if (!employee) {
-      return res.status(404).send();
+      return res
+        .status(404)
+        .json({ message: "No employee found with the supplied employeeId" });
     }
 
     // Attach found artist to request object and proceed
