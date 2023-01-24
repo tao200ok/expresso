@@ -4,9 +4,26 @@ const db = new sqlite3.Database(
   process.env.TEST_DATABASE || "./database.sqlite"
 );
 
-function validate(data) {
+function validate(data, action) {
   const { name, position, wage } = data;
-  if (!name || !position || !wage) {
+  let invalid;
+  if (typeof action === "undefined") {
+    action = "create";
+  }
+  switch (action) {
+    case "create":
+      invalid = !name || !position || !wage;
+      break;
+    case "update":
+      // NOTE: For use in the future with put requests to make all fields optional but require at least one field. Read commented fn call and 'query' in employees.put('/:employeeId', ...).
+      invalid = !name && !position && !wage;
+      break;
+    default:
+      throw new Error(
+        `'${action}' is not a valid 'action' value. Please try 'create', 'update' or leave it blank to use the default 'create'`
+      );
+  }
+  if (invalid) {
     return false;
   }
   return data;
@@ -91,7 +108,7 @@ employees.get("/:employeeId", (req, res) => {
 // Update an Employee
 employees.put("/:employeeId", (req, res, next) => {
   // Validate employee data recieved in request.
-  let updatedEmployee = validate(req.body.employee);
+  let updatedEmployee = validate(req.body.employee /*, "update"*/);
   // Handle incomplete employee data.
   if (updatedEmployee === false) {
     return res.status(400).send();
@@ -99,6 +116,7 @@ employees.put("/:employeeId", (req, res, next) => {
 
   // Update employee data in database
   const query = `UPDATE Employee SET name=$name, position=$position, wage=$wage WHERE id=$id`;
+  // const query = `UPDATE Employee SET ${name ? 'name=$name,' : ''} ${position ? 'position=$position,' : ''} ${wage ? 'wage=$wage' : ''} WHERE id=$id`;
 
   const { name, position, wage } = updatedEmployee;
   const params = {
