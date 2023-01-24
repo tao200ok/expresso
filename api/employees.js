@@ -53,11 +53,7 @@ employees.post("/", (req, res, next) => {
   // Add valid Employee data to db
   const { name, position, wage, isCurrentEmployee } = newEmployee;
 
-  const query = `INSERT INTO Employee(name, position, wage${
-    isCurrentEmployee ? ", is_current_employee" : ""
-  }) VALUES($name, $position, $wage${
-    isCurrentEmployee ? ", $isCurrentEmployee" : ""
-  })`;
+  const query = `INSERT INTO Employee(name, position, wage) VALUES($name, $position, $wage)`;
   const params = {
     $name: name,
     $position: position,
