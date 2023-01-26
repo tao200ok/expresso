@@ -5,6 +5,9 @@ const db = new sqlite3.Database(
 );
 
 function validate(data, action) {
+  if (typeof data === "undefined") {
+    return false;
+  }
   const { name, position, wage } = data;
   let invalid;
   if (typeof action === "undefined") {
