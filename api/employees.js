@@ -3,25 +3,7 @@ const sqlite3 = require("sqlite3");
 const db = new sqlite3.Database(
   process.env.TEST_DATABASE || "./database.sqlite"
 );
-
-function validate(data, required) {
-  // Check that request data object is supplied and has at least one field
-  if (typeof data === "undefined" || Object.keys(data).length < 1) {
-    return false;
-  }
-
-  // To check if a field is missing
-  function isMissing(field) {
-    return !data[field];
-  }
-
-  // Check that none of the required fields are missing
-  if (required.some(isMissing)) {
-    return false;
-  }
-
-  return data;
-}
+const { validate } = require("./utils");
 
 // Retrieve all current Employees
 employees.get("/", (req, res, next) => {
@@ -55,12 +37,12 @@ employees.post("/", (req, res, next) => {
     $isCurrentEmployee: isCurrentEmployee,
   };
 
+  // Retrieve and send newly created Employee
   db.run(query, params, function (err) {
     if (err) {
       return next(err);
     }
 
-    // Retrieve and send newly created Employee
     const query = `SELECT * FROM Employee WHERE id=${this.lastID}`;
     db.get(query, [], function (err, newEmployee) {
       if (err) {
