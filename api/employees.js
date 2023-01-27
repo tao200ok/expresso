@@ -4,31 +4,22 @@ const db = new sqlite3.Database(
   process.env.TEST_DATABASE || "./database.sqlite"
 );
 
-function validate(data, action) {
-  if (typeof data === "undefined") {
+function validate(data, required) {
+  // Check that request data object is supplied and has at least one field
+  if (typeof data === "undefined" || Object.keys(data).length < 1) {
     return false;
   }
-  const { name, position, wage } = data;
-  let invalid;
-  if (typeof action === "undefined") {
-    action = "create";
+
+  // To check if a field is missing
+  function isMissing(field) {
+    return !data[field];
   }
-  switch (action) {
-    case "create":
-      invalid = !name || !position || !wage;
-      break;
-    case "update":
-      // NOTE: For use in the future with put requests to make all fields optional but require at least one field. Read commented fn call and 'query' in employees.put('/:employeeId', ...).
-      invalid = !name && !position && !wage;
-      break;
-    default:
-      throw new Error(
-        `'${action}' is not a valid 'action' value. Please try 'create', 'update' or leave it blank to use the default 'create'`
-      );
-  }
-  if (invalid) {
+
+  // Check that none of the required fields are missing
+  if (required.some(isMissing)) {
     return false;
   }
+
   return data;
 }
 
@@ -47,7 +38,7 @@ employees.get("/", (req, res, next) => {
 // Add a new Employee to the database
 employees.post("/", (req, res, next) => {
   // Validate received data
-  const newEmployee = validate(req.body.employee);
+  const newEmployee = validate(req.body.employee, ["name", "position", "wage"]);
   // Handle incomplete/invalid data
   if (newEmployee === false) {
     return res.status(400).send();
@@ -109,7 +100,11 @@ employees.get("/:employeeId", (req, res) => {
 // Update an Employee
 employees.put("/:employeeId", (req, res, next) => {
   // Validate employee data recieved in request.
-  let updatedEmployee = validate(req.body.employee /*, "update"*/);
+  let updatedEmployee = validate(req.body.employee, [
+    "name",
+    "position",
+    "wage",
+  ]);
   // Handle incomplete employee data.
   if (updatedEmployee === false) {
     return res.status(400).send();
