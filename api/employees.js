@@ -68,7 +68,7 @@ employees.param("employeeId", (req, res, next, employeeId) => {
 
     // Attach employee to the request object and proceed
     req.employee = employee;
-    next();
+    return next();
   });
 });
 

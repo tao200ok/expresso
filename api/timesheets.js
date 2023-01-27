@@ -67,7 +67,7 @@ timesheets.param("timesheetId", (req, res, next, timesheetId) => {
 
     // Attach timesheet to the request object and proceed
     req.timesheet = timesheet;
-    next();
+    return next();
   });
 });
 
