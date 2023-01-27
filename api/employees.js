@@ -53,7 +53,7 @@ employees.post("/", (req, res, next) => {
   });
 });
 
-// Retrieve Employee with id :employeeId from database
+// Retrieve Employee with employeeId from database
 employees.param("employeeId", (req, res, next, employeeId) => {
   const query = `SELECT * FROM Employee WHERE id=${employeeId}`;
   db.get(query, [], function (err, employee) {
@@ -61,14 +61,12 @@ employees.param("employeeId", (req, res, next, employeeId) => {
       return next(err);
     }
 
-    // Employee with :employeeId not in database
+    // Employee with provided employeeId not in database
     if (!employee) {
-      return res
-        .status(404)
-        .json({ message: "No employee found with the supplied employeeId" });
+      return res.status(404).json({ message: "No employee with that id" });
     }
 
-    // Attach found artist to request object and proceed
+    // Attach employee to the request object and proceed
     req.employee = employee;
     next();
   });
@@ -81,21 +79,19 @@ employees.get("/:employeeId", (req, res) => {
 
 // Update an Employee
 employees.put("/:employeeId", (req, res, next) => {
-  // Validate employee data recieved in request.
+  // Validate recieved data
   let updatedEmployee = validate(req.body.employee, [
     "name",
     "position",
     "wage",
   ]);
-  // Handle incomplete employee data.
+  // Handle incomplete employee data
   if (updatedEmployee === false) {
     return res.status(400).send();
   }
 
   // Update employee data in database
   const query = `UPDATE Employee SET name=$name, position=$position, wage=$wage WHERE id=$id`;
-  // const query = `UPDATE Employee SET ${name ? 'name=$name,' : ''} ${position ? 'position=$position,' : ''} ${wage ? 'wage=$wage' : ''} WHERE id=$id`;
-
   const { name, position, wage } = updatedEmployee;
   const params = {
     $name: name,
@@ -114,7 +110,7 @@ employees.put("/:employeeId", (req, res, next) => {
       if (err) {
         return next(err);
       }
-      res.status(200).json({ employee: updatedEmployee });
+      return res.status(200).json({ employee: updatedEmployee });
     });
   });
 });
