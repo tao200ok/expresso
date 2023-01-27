@@ -109,4 +109,15 @@ timesheets.put("/:timesheetId", (req, res, next) => {
   });
 });
 
+timesheets.delete("/:timesheetId", (req, res, next) => {
+  const query = `DELETE FROM Timesheet WHERE id=${req.params.timesheetId}`;
+  db.run(query, [], function (err) {
+    if (err) {
+      return next(err);
+    }
+
+    return res.status(204).send();
+  });
+});
+
 module.exports = timesheets;
