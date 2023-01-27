@@ -62,7 +62,7 @@ timesheets.param("timesheetId", (req, res, next, timesheetId) => {
 
     // Timesheet with provided timesheetId not in database
     if (!timesheet) {
-      res.status(404).json({ message: "No timesheet with that id" });
+      return res.status(404).json({ message: "No timesheet with that id" });
     }
 
     // Attach timesheet to the request object and proceed
