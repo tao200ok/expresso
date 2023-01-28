@@ -62,6 +62,38 @@ menus.get("/:menuId", (req, res) => {
   return res.status(200).json({ menu: req.menu });
 });
 
+menus.put("/:menuId", (req, res, next) => {
+  // Validate recieved data
+  const updatedMenu = validate(req.body.menu, ["title"]);
+
+  // Handle incomplete/invalid data
+  if (updatedMenu === false) {
+    return res.status(400).send();
+  }
+
+  // Update employee data in database
+  const query = "UPDATE Menu SET title=$title WHERE id=$id";
+  const { title } = updatedMenu;
+  const params = {
+    $title: title,
+    $id: req.params.menuId,
+  };
+  db.run(query, params, function (err) {
+    if (err) {
+      return next(err);
+    }
+
+    // Retrieve and send newly updated employee
+    const query = `SELECT * FROM Menu WHERE id=${req.params.menuId}`;
+    db.get(query, [], function (err, updatedMenu) {
+      if (err) {
+        return next(err);
+      }
+      return res.status(200).json({ menu: updatedMenu });
+    });
+  });
+});
+
 // Mount /menu-items router
 const menuItems = require("./menu-items");
 menus.use("/:menuId/menu-items", menuItems);
