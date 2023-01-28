@@ -94,6 +94,32 @@ menus.put("/:menuId", (req, res, next) => {
   });
 });
 
+menus.delete("/:menuId", (req, res, next) => {
+  const { menuId } = req.params;
+  // First check that menu has no related items
+  let query = `SELECT * FROM MenuItem WHERE menu_id=${menuId}`;
+  db.all(query, [], function (err, menuItems) {
+    if (err) {
+      return next(err);
+    }
+
+    if (menuItems.length > 0) {
+      return res
+        .status(400)
+        .json({ message: "You must remove all menu items first" });
+    } else {
+      // Then proceed to delete menu with no items
+      query = `DELETE FROM Menu WHERE id=${menuId}`;
+      db.run(query, [], function (err) {
+        if (err) {
+          return next(err);
+        }
+        return res.status(204).send();
+      });
+    }
+  });
+});
+
 // Mount /menu-items router
 const menuItems = require("./menu-items");
 menus.use("/:menuId/menu-items", menuItems);
