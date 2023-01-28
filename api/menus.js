@@ -42,6 +42,26 @@ menus.post("/", (req, res, next) => {
   });
 });
 
+menus.param("menuId", (req, res, next, menuId) => {
+  const query = `SELECT * FROM Menu WHERE id=${menuId}`;
+  db.get(query, [], function (err, menu) {
+    if (err) {
+      return next(err);
+    }
+
+    if (!menu) {
+      return res.status(404).json({ message: "No menu with that id" });
+    }
+
+    req.menu = menu;
+    return next();
+  });
+});
+
+menus.get("/:menuId", (req, res) => {
+  return res.status(200).json({ menu: req.menu });
+});
+
 // Mount /menu-items router
 const menuItems = require("./menu-items");
 menus.use("/:menuId/menu-items", menuItems);
