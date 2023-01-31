@@ -111,4 +111,14 @@ menuItems.put("/:menuItemId", (req, res, next) => {
   });
 });
 
+menuItems.delete("/:menuItemId", (req, res, next) => {
+  const query = `DELETE FROM MenuItem WHERE id=${req.params.menuItemId}`;
+  db.run(query, [], function (err) {
+    if (err) {
+      return next(err);
+    }
+    return res.status(204).send();
+  });
+});
+
 module.exports = menuItems;
