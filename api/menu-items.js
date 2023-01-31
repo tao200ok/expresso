@@ -55,4 +55,60 @@ menuItems.post("/", (req, res, next) => {
   });
 });
 
+menuItems.param("menuItemId", (req, res, next, menuItemId) => {
+  const query = `SELECT * FROM MenuItem WHERE id=${menuItemId}`;
+  db.get(query, [], function (err, menuItem) {
+    if (err) {
+      return next(err);
+    }
+
+    if (!menuItem) {
+      return res.status(404).json({ message: "No menu item with that id" });
+    }
+
+    req.menuItem = menuItem;
+    return next();
+  });
+});
+
+menuItems.put("/:menuItemId", (req, res, next) => {
+  // Validate recieved data
+  const updatedMenuItem = validate(req.body.menuItem, [
+    "name",
+    "description",
+    "inventory",
+    "price",
+  ]);
+
+  // Handle incomplete/invalid data
+  if (updatedMenuItem === false) {
+    return res.status(400).send();
+  }
+
+  // Update valid Menu Item data in db
+  let query = `UPDATE MenuItem SET name=$name, description=$description, inventory=$inventory, price=$price WHERE id=$id`;
+  const { name, description, inventory, price } = updatedMenuItem;
+  const params = {
+    $name: name,
+    $description: description,
+    $inventory: inventory,
+    $price: price,
+    $id: req.params.menuItemId,
+  };
+  db.run(query, params, function (err) {
+    if (err) {
+      return next(err);
+    }
+
+    // Retrieve and send newly updated Menu Item
+    query = `SELECT * FROM MenuItem WHERE id=${req.params.menuItemId}`;
+    db.get(query, [], function (err, updatedMenuItem) {
+      if (err) {
+        return next(err);
+      }
+      return res.status(200).json({ menuItem: updatedMenuItem });
+    });
+  });
+});
+
 module.exports = menuItems;
