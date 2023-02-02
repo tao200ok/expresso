@@ -1,0 +1,3039 @@
+{
+	"info": {
+		"_postman_id": "50103d9d-bd57-4ddf-b6a9-a2d791e99638",
+		"name": "Expresso",
+		"description": "An internal system management tool for a coffee shop called Expresso.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25073479"
+	},
+	"item": [
+		{
+			"name": "Read all employees",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/employees",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"employees"
+					]
+				},
+				"description": "Retrieves all current employees in the system."
+			},
+			"response": [
+				{
+					"name": "Request was successful. Response body will contain an 'employees' field with an array of objects, each representing individual employees. See the example.",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/employees",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"employees\": [\n\t\t{\n\t\t\t\"id\": 1,\n\t\t\t\"name\": \"Employee 1\",\n\t\t\t\"position\": \"Employee\",\n\t\t\t\"wage\": 10,\n\t\t\t\"is_currently_employed\": 1\n\t\t},\n\t\t{\n\t\t\t\"id\": 2,\n\t\t\t\"name\": \"Employee 2\",\n\t\t\t\"position\": \"Manager\",\n\t\t\t\"wage\": 20,\n\t\t\t\"is_currently_employed\": 1\n\t\t}\n\t]\n}"
+				},
+				{
+					"name": "Request failed. An unexpected error occured.",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/employees",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add new employee",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"employee\": {\n\t\t\"name\": \"New Employee\",\n\t\t\"position\": \"Employee\",\n\t\t\"wage\": 50\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/employees",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"employees"
+					]
+				},
+				"description": "Creates a new employee in the system using data supplied in the request body."
+			},
+			"response": [
+				{
+					"name": "Request was successful. The employee was successfully added to the system and the response body will contain the added data in the 'employee' field. See the example.",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"employee\": {\n\t\t\"name\": \"New Employee\",\n\t\t\"position\": \"Employee\",\n\t\t\"wage\": 50\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/employees",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"employee\": {\n\t\t\"id\": 3,\n\t\t\"name\": \"New Employee\",\n\t\t\"position\": \"Employee\",\n\t\t\"wage\": 30,\n\t\t\"is_currently_employed\": 1\n\t}\n}"
+				},
+				{
+					"name": "Request was not understood by server. Invalid or incomplete request may be missing a required field.",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"employee\": {\n\t\t\"name\": \"New Employee\",\n\t\t\"position\": \"Employee\",\n\t\t\"wage\": 50\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/employees",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				},
+				{
+					"name": "Request failed. An unexpected error occured.",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"employee\": {\n\t\t\"name\": \"New Employee\",\n\t\t\"position\": \"Employee\",\n\t\t\"wage\": 50\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/employees",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Read an employee",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/employees/:employeeId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"employees",
+						":employeeId"
+					],
+					"variable": [
+						{
+							"key": "employeeId",
+							"value": "75122298",
+							"description": "(Required) The unique identifier of the employee."
+						}
+					]
+				},
+				"description": "Retrieves an employee's information from the system using the supplied employeeId."
+			},
+			"response": [
+				{
+					"name": "Request was successful. Response body will contain the retrieved employee information in the 'employee' field. See the example.",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/employees/:employeeId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"employees",
+								":employeeId"
+							],
+							"variable": [
+								{
+									"key": "employeeId",
+									"value": "75122298",
+									"description": "(Required) The unique identifier of the employee."
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"employee\": {\n\t\t\"id\": 1,\n\t\t\"name\": \"Employee 1\",\n\t\t\"position\": \"Employee\",\n\t\t\"wage\": 10,\n\t\t\"is_currently_employed\": 1\n\t}\n}"
+				},
+				{
+					"name": "Not found with the supplied id. Note: An id is invalid if it is not an integer or an entity with that id does not exist in the system.",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/employees/:employeeId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees",
+								":employeeId"
+							],
+							"variable": [
+								{
+									"key": "employeeId",
+									"value": "75122298",
+									"description": "(Required) The unique identifier of the employee."
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				},
+				{
+					"name": "Request failed. An unexpected error occured.",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/employees/:employeeId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees",
+								":employeeId"
+							],
+							"variable": [
+								{
+									"key": "employeeId",
+									"value": "75122298",
+									"description": "(Required) The unique identifier of the employee."
+								}
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update an employee",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"employee\": {\n\t\t\"name\": \"Updated Employee\",\n\t\t\"position\": \"Updated Position\",\n\t\t\"wage\": 150\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/employees/:employeeId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"employees",
+						":employeeId"
+					],
+					"variable": [
+						{
+							"key": "employeeId",
+							"value": "<integer>",
+							"description": "(Required) The unique identifier of the employee."
+						}
+					]
+				},
+				"description": "Updates an employee's information in the system using data from the request body and supplied employeeId."
+			},
+			"response": [
+				{
+					"name": "Request was successful. The employee was successfully updated in the system and the response body will contain the updated data in the 'employee' field. See the example.",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"employee\": {\n\t\t\"name\": \"Updated Employee\",\n\t\t\"position\": \"Updated Position\",\n\t\t\"wage\": 150\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/employees/:employeeId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"employees",
+								":employeeId"
+							],
+							"variable": [
+								{
+									"key": "employeeId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the employee."
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"employee\": {\n\t\t\"id\": 3,\n\t\t\"name\": \"Updated Employee\",\n\t\t\"position\": \"Updated Position\",\n\t\t\"wage\": 150,\n\t\t\"is_currently_employed\": 1\n\t}\n}"
+				},
+				{
+					"name": "Request was not understood by server. Invalid or incomplete request may be missing a required field.",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"employee\": {\n\t\t\"name\": \"Updated Employee\",\n\t\t\"position\": \"Updated Position\",\n\t\t\"wage\": 150\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/employees/:employeeId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees",
+								":employeeId"
+							],
+							"variable": [
+								{
+									"key": "employeeId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the employee."
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				},
+				{
+					"name": "Not found with the supplied id. Note: An id is invalid if it is not an integer or an entity with that id does not exist in the system.",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"employee\": {\n\t\t\"name\": \"Updated Employee\",\n\t\t\"position\": \"Updated Position\",\n\t\t\"wage\": 150\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/employees/:employeeId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees",
+								":employeeId"
+							],
+							"variable": [
+								{
+									"key": "employeeId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the employee."
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				},
+				{
+					"name": "Request failed. An unexpected error occured.",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"employee\": {\n\t\t\"name\": \"Updated Employee\",\n\t\t\"position\": \"Updated Position\",\n\t\t\"wage\": 150\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/employees/:employeeId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees",
+								":employeeId"
+							],
+							"variable": [
+								{
+									"key": "employeeId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the employee."
+								}
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Remove an employee",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/employees/:employeeId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"employees",
+						":employeeId"
+					],
+					"variable": [
+						{
+							"key": "employeeId",
+							"value": "<integer>",
+							"description": "(Required) The unique identifier of the employee."
+						}
+					]
+				},
+				"description": "Sets an employee in the system as not currently employed using the supplied employeeId."
+			},
+			"response": [
+				{
+					"name": "Successfully removed the employee.",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/employees/:employeeId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"employees",
+								":employeeId"
+							],
+							"variable": [
+								{
+									"key": "employeeId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the employee."
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Not found with the supplied id. Note: An id is invalid if it is not an integer or an entity with that id does not exist in the system.",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/employees/:employeeId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees",
+								":employeeId"
+							],
+							"variable": [
+								{
+									"key": "employeeId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the employee."
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				},
+				{
+					"name": "Request failed. An unexpected error occured.",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/employees/:employeeId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees",
+								":employeeId"
+							],
+							"variable": [
+								{
+									"key": "employeeId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the employee."
+								}
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Read an employee's timesheets",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/employees/:employeeId/timesheets",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"employees",
+						":employeeId",
+						"timesheets"
+					],
+					"variable": [
+						{
+							"key": "employeeId",
+							"value": "<integer>",
+							"description": "(Required) The unique identifier of the employee."
+						}
+					]
+				},
+				"description": "Retrieves all timesheet data related to an employee using the supplied employeeId."
+			},
+			"response": [
+				{
+					"name": "Request was successful. Response body will contain a 'timesheets' field with an array of objects, each representing individual timesheet data. See the example.",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/employees/:employeeId/timesheets",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees",
+								":employeeId",
+								"timesheets"
+							],
+							"variable": [
+								{
+									"key": "employeeId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the employee."
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"timesheets\": [\n\t\t{\n\t\t\t\"id\": 1,\n\t\t\t\"hours\": 10,\n\t\t\t\"rate\": 15.5,\n\t\t\t\"date\": 1506100907820,\n\t\t\t\"employeeId\": 1\n\t\t},\n\t\t{\n\t\t\t\"id\": 2,\n\t\t\t\"hours\": 20,\n\t\t\t\"rate\": 15.5,\n\t\t\t\"date\": 1506100907821,\n\t\t\t\"employeeId\": 1\n\t\t}\n\t]\n}"
+				},
+				{
+					"name": "Not found with the supplied id. Note: An id is invalid if it is not an integer or an entity with that id does not exist in the system.",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/employees/:employeeId/timesheets",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees",
+								":employeeId",
+								"timesheets"
+							],
+							"variable": [
+								{
+									"key": "employeeId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the employee."
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				},
+				{
+					"name": "Request failed. An unexpected error occured.",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/employees/:employeeId/timesheets",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees",
+								":employeeId",
+								"timesheets"
+							],
+							"variable": [
+								{
+									"key": "employeeId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the employee."
+								}
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add a new timesheet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"timesheet\": {\n\t\t\"hours\": 10,\n\t\t\"rate\": 15.5,\n\t\t\"date\": 1506100907820\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/employees/:employeeId/timesheets",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"employees",
+						":employeeId",
+						"timesheets"
+					],
+					"variable": [
+						{
+							"key": "employeeId",
+							"value": "<integer>",
+							"description": "(Required) The unique identifier of the employee."
+						}
+					]
+				},
+				"description": "Adds a new timesheet to the system using data supplied in the request body. Added data is linked to an employee using the supplied employeeId."
+			},
+			"response": [
+				{
+					"name": "Request was successful. The timesheet was successfully added to the system and the response body will contain the added data in the 'timesheet' field. See the example.",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"timesheet\": {\n\t\t\"hours\": 10,\n\t\t\"rate\": 15.5,\n\t\t\"date\": 1506100907820\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/employees/:employeeId/timesheets",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees",
+								":employeeId",
+								"timesheets"
+							],
+							"variable": [
+								{
+									"key": "employeeId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the employee."
+								}
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"timesheet\": {\n\t\t\"id\": 3,\n\t\t\"hours\": 10,\n\t\t\"rate\": 15.5,\n\t\t\"date\": 1506100907820,\n\t\t\"employeeId\": 1\n\t}\n}"
+				},
+				{
+					"name": "Request was not understood by server. Invalid or incomplete request may be missing a required field.",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"timesheet\": {\n\t\t\"hours\": 10,\n\t\t\"rate\": 15.5,\n\t\t\"date\": 1506100907820\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/employees/:employeeId/timesheets",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees",
+								":employeeId",
+								"timesheets"
+							],
+							"variable": [
+								{
+									"key": "employeeId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the employee."
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				},
+				{
+					"name": "Not found with the supplied id. Note: An id is invalid if it is not an integer or an entity with that id does not exist in the system.",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"timesheet\": {\n\t\t\"hours\": 10,\n\t\t\"rate\": 15.5,\n\t\t\"date\": 1506100907820\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/employees/:employeeId/timesheets",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees",
+								":employeeId",
+								"timesheets"
+							],
+							"variable": [
+								{
+									"key": "employeeId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the employee."
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				},
+				{
+					"name": "Request failed. An unexpected error occured.",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"timesheet\": {\n\t\t\"hours\": 10,\n\t\t\"rate\": 15.5,\n\t\t\"date\": 1506100907820\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/employees/:employeeId/timesheets",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees",
+								":employeeId",
+								"timesheets"
+							],
+							"variable": [
+								{
+									"key": "employeeId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the employee."
+								}
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update a timesheet",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"timesheet\": {\n\t\t\"hours\": 11,\n\t\t\"rate\": 15.5,\n\t\t\"date\": 1506100907820\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/employees/:employeeId/timesheets/:timesheetId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"employees",
+						":employeeId",
+						"timesheets",
+						":timesheetId"
+					],
+					"variable": [
+						{
+							"key": "employeeId",
+							"value": "<integer>",
+							"description": "(Required) The unique identifier of the employee."
+						},
+						{
+							"key": "timesheetId",
+							"value": "65664828",
+							"description": "(Required) The unique identifier of the timesheet."
+						}
+					]
+				},
+				"description": "Updates a timesheet related to an employee using the supplied timesheetId and employeeId."
+			},
+			"response": [
+				{
+					"name": "Request was successful. The timesheet was successfully updated in the system and the response body will contain the updated data in the 'timesheet' field. See the example.",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"timesheet\": {\n\t\t\"hours\": 11,\n\t\t\"rate\": 15.5,\n\t\t\"date\": 1506100907820\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/employees/:employeeId/timesheets/:timesheetId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees",
+								":employeeId",
+								"timesheets",
+								":timesheetId"
+							],
+							"variable": [
+								{
+									"key": "employeeId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the employee."
+								},
+								{
+									"key": "timesheetId",
+									"value": "65664828",
+									"description": "(Required) The unique identifier of the timesheet."
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"timesheet\": {\n\t\t\"id\": 1,\n\t\t\"hours\": 11,\n\t\t\"rate\": 15.5,\n\t\t\"date\": 1506100907820,\n\t\t\"employeeId\": 1\n\t}\n}"
+				},
+				{
+					"name": "Request was not understood by server. Invalid or incomplete request may be missing a required field.",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"timesheet\": {\n\t\t\"hours\": 11,\n\t\t\"rate\": 15.5,\n\t\t\"date\": 1506100907820\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/employees/:employeeId/timesheets/:timesheetId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees",
+								":employeeId",
+								"timesheets",
+								":timesheetId"
+							],
+							"variable": [
+								{
+									"key": "employeeId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the employee."
+								},
+								{
+									"key": "timesheetId",
+									"value": "65664828",
+									"description": "(Required) The unique identifier of the timesheet."
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				},
+				{
+					"name": "Not found with the supplied id. Note: An id is invalid if it is not an integer or an entity with that id does not exist in the system.",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"timesheet\": {\n\t\t\"hours\": 11,\n\t\t\"rate\": 15.5,\n\t\t\"date\": 1506100907820\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/employees/:employeeId/timesheets/:timesheetId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees",
+								":employeeId",
+								"timesheets",
+								":timesheetId"
+							],
+							"variable": [
+								{
+									"key": "employeeId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the employee."
+								},
+								{
+									"key": "timesheetId",
+									"value": "65664828",
+									"description": "(Required) The unique identifier of the timesheet."
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				},
+				{
+					"name": "Request failed. An unexpected error occured.",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"timesheet\": {\n\t\t\"hours\": 11,\n\t\t\"rate\": 15.5,\n\t\t\"date\": 1506100907820\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/employees/:employeeId/timesheets/:timesheetId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees",
+								":employeeId",
+								"timesheets",
+								":timesheetId"
+							],
+							"variable": [
+								{
+									"key": "employeeId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the employee."
+								},
+								{
+									"key": "timesheetId",
+									"value": "65664828",
+									"description": "(Required) The unique identifier of the timesheet."
+								}
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Remove a timesheet",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/employees/:employeeId/timesheets/:timesheetId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"employees",
+						":employeeId",
+						"timesheets",
+						":timesheetId"
+					],
+					"variable": [
+						{
+							"key": "employeeId",
+							"value": "<integer>",
+							"description": "(Required) The unique identifier of the employee."
+						},
+						{
+							"key": "timesheetId",
+							"value": "<integer>",
+							"description": "(Required) The unique identifier of the timesheet."
+						}
+					]
+				},
+				"description": "Permanently removes a timesheet from the system using the supplied employeeId and timesheetId."
+			},
+			"response": [
+				{
+					"name": "Successfully removed the timesheet.",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/employees/:employeeId/timesheets/:timesheetId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees",
+								":employeeId",
+								"timesheets",
+								":timesheetId"
+							],
+							"variable": [
+								{
+									"key": "employeeId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the employee."
+								},
+								{
+									"key": "timesheetId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the timesheet."
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Not found with the supplied id. Note: An id is invalid if it is not an integer or an entity with that id does not exist in the system.",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/employees/:employeeId/timesheets/:timesheetId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees",
+								":employeeId",
+								"timesheets",
+								":timesheetId"
+							],
+							"variable": [
+								{
+									"key": "employeeId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the employee."
+								},
+								{
+									"key": "timesheetId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the timesheet."
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				},
+				{
+					"name": "Request failed. An unexpected error occured.",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/employees/:employeeId/timesheets/:timesheetId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"employees",
+								":employeeId",
+								"timesheets",
+								":timesheetId"
+							],
+							"variable": [
+								{
+									"key": "employeeId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the employee."
+								},
+								{
+									"key": "timesheetId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the timesheet."
+								}
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Read all menus",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/menus",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"menus"
+					]
+				},
+				"description": "Retrieves all menus in the system."
+			},
+			"response": [
+				{
+					"name": "Request was successful. Response body will contain a 'menus' field with an array of objects, each representing individual menus. See the example.",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/menus",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"menus"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"menus\": [\n\t\t{\n\t\t\t\"id\": 1,\n\t\t\t\"title\": \"Menu 1\"\n\t\t},\n\t\t{\n\t\t\t\"id\": 2,\n\t\t\t\"title\": \"Menu 2\"\n\t\t}\n\t]\n}"
+				},
+				{
+					"name": "Request failed. An unexpected error occured.",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/menus",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"menus"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add new menu",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"menu\": {\n\t\t\"title\": \"New Menu\"\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/menus",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"menus"
+					]
+				},
+				"description": "Creates a new menu in the system with the data supplied in the request body."
+			},
+			"response": [
+				{
+					"name": "Request was successful. The new menu was successfully added to the system and the response body will contain the added data in the 'menu' field. See the example.",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"menu\": {\n\t\t\"title\": \"New Menu\"\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/menus",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"menus"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"menu\": {\n\t\t\"id\": 3,\n\t\t\"title\": \"New Menu\"\n\t}\n}"
+				},
+				{
+					"name": "Request was not understood by server. Invalid or incomplete request may be missing a required field.",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"menu\": {\n\t\t\"title\": \"New Menu\"\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/menus",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"menus"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				},
+				{
+					"name": "Request failed. An unexpected error occured.",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"menu\": {\n\t\t\"title\": \"New Menu\"\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/menus",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"menus"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Read a menu",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/menus/:menuId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"menus",
+						":menuId"
+					],
+					"variable": [
+						{
+							"key": "menuId",
+							"value": "86440154",
+							"description": "(Required) The unique identifier of the menu."
+						}
+					]
+				},
+				"description": "Retrieves a menu's information from the system using the supplied menuId."
+			},
+			"response": [
+				{
+					"name": "Request was successful. Response body will contain the retrieved menu information in the 'menu' field. See the example.",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/menus/:menuId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"menus",
+								":menuId"
+							],
+							"variable": [
+								{
+									"key": "menuId",
+									"value": "86440154",
+									"description": "(Required) The unique identifier of the menu."
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"menu\": {\n\t\t\"id\": 1,\n\t\t\"title\": \"Menu 1\"\n\t}\n}"
+				},
+				{
+					"name": "Not found with the supplied id. Note: An id is invalid if it is not an integer or an entity with that id does not exist in the system.",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/menus/:menuId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"menus",
+								":menuId"
+							],
+							"variable": [
+								{
+									"key": "menuId",
+									"value": "86440154",
+									"description": "(Required) The unique identifier of the menu."
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				},
+				{
+					"name": "Request failed. An unexpected error occured.",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/menus/:menuId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"menus",
+								":menuId"
+							],
+							"variable": [
+								{
+									"key": "menuId",
+									"value": "86440154",
+									"description": "(Required) The unique identifier of the menu."
+								}
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update a menu",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"menu\": {\n\t\t\"title\": \"Updated Title\"\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/menus/:menuId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"menus",
+						":menuId"
+					],
+					"variable": [
+						{
+							"key": "menuId",
+							"value": "<integer>",
+							"description": "(Required) The unique identifier of the menu."
+						}
+					]
+				},
+				"description": "Updates a menu's information in the system using the supplied menuId."
+			},
+			"response": [
+				{
+					"name": "Request was successful. The menu was successfully updated in the system and the response body will contain the updated data in the 'menu' field. See the example.",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"menu\": {\n\t\t\"title\": \"Updated Title\"\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/menus/:menuId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"menus",
+								":menuId"
+							],
+							"variable": [
+								{
+									"key": "menuId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the menu."
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"menu\": {\n\t\t\"id\": 3,\n\t\t\"title\": \"Updated Title\"\n\t}\n}"
+				},
+				{
+					"name": "Request was not understood by server. Invalid or incomplete request may be missing a required field.",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"menu\": {\n\t\t\"title\": \"Updated Title\"\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/menus/:menuId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"menus",
+								":menuId"
+							],
+							"variable": [
+								{
+									"key": "menuId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the menu."
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				},
+				{
+					"name": "Not found with the supplied id. Note: An id is invalid if it is not an integer or an entity with that id does not exist in the system.",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"menu\": {\n\t\t\"title\": \"Updated Title\"\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/menus/:menuId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"menus",
+								":menuId"
+							],
+							"variable": [
+								{
+									"key": "menuId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the menu."
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				},
+				{
+					"name": "Request failed. An unexpected error occured.",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"menu\": {\n\t\t\"title\": \"Updated Title\"\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/menus/:menuId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"menus",
+								":menuId"
+							],
+							"variable": [
+								{
+									"key": "menuId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the menu."
+								}
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Remove a menu",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/menus/:menuId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"menus",
+						":menuId"
+					],
+					"variable": [
+						{
+							"key": "menuId",
+							"value": "<integer>",
+							"description": "(Required) The unique identifier of the menu."
+						}
+					]
+				},
+				"description": "Permanently removes a menu from the system using the supplied menuId."
+			},
+			"response": [
+				{
+					"name": "Successfully removed menu.",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/menus/:menuId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"menus",
+								":menuId"
+							],
+							"variable": [
+								{
+									"key": "menuId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the menu."
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Not found with the supplied id. Note: An id is invalid if it is not an integer or an entity with that id does not exist in the system.",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/menus/:menuId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"menus",
+								":menuId"
+							],
+							"variable": [
+								{
+									"key": "menuId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the menu."
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				},
+				{
+					"name": "Request failed. An unexpected error occured.",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/menus/:menuId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"menus",
+								":menuId"
+							],
+							"variable": [
+								{
+									"key": "menuId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the menu."
+								}
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Read a menu's items",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/menus/:menuId/menu-items",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"menus",
+						":menuId",
+						"menu-items"
+					],
+					"variable": [
+						{
+							"key": "menuId",
+							"value": "<integer>",
+							"description": "(Required) The unique identifier of the menu."
+						}
+					]
+				},
+				"description": "Retrieves all items in a menu using the supplied menuId."
+			},
+			"response": [
+				{
+					"name": "Successfully retrieved items",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/menus/:menuId/menu-items",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"menus",
+								":menuId",
+								"menu-items"
+							],
+							"variable": [
+								{
+									"key": "menuId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the menu."
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"menu items\": [\n\t\t{\n\t\t\t\"id\": 1,\n\t\t\t\"name\": \"Item 1\",\n\t\t\t\"description\": \"An item on the menu\",\n\t\t\t\"inventory\": 5,\n\t\t\t\"price\": 2.5,\n\t\t\t\"menuId\": 1\n\t\t},\n\t\t{\n\t\t\t\"id\": 2,\n\t\t\t\"name\": \"Item 2\",\n\t\t\t\"description\": \"Another item on the menu\",\n\t\t\t\"inventory\": 10,\n\t\t\t\"price\": 2,\n\t\t\t\"menuId\": 1\n\t\t}\n\t]\n}"
+				},
+				{
+					"name": "Not found with the supplied id. Note: An id is invalid if it is not an integer or an entity with that id does not exist in the system.",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/menus/:menuId/menu-items",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"menus",
+								":menuId",
+								"menu-items"
+							],
+							"variable": [
+								{
+									"key": "menuId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the menu."
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				},
+				{
+					"name": "Request failed. An unexpected error occured.",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/menus/:menuId/menu-items",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"menus",
+								":menuId",
+								"menu-items"
+							],
+							"variable": [
+								{
+									"key": "menuId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the menu."
+								}
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add a new menu item",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"menuItem\": {\n\t\t\"name\": \"New item\",\n\t\t\"description\": \"Tasty new menu item\",\n\t\t\"inventory\": 10,\n\t\t\"price\": 2.5\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/menus/:menuId/menu-items",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"menus",
+						":menuId",
+						"menu-items"
+					],
+					"variable": [
+						{
+							"key": "menuId",
+							"value": "<integer>",
+							"description": "(Required) The unique identifier of the menu."
+						}
+					]
+				},
+				"description": "Adds a new item to the system using the data supplied in the request body. Created item is linked to a menu using the supplied menuId."
+			},
+			"response": [
+				{
+					"name": "Request was successful. The item was successfully added to the system and the response body will contain the added data in the 'menuItem' field. See the example.",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"menuItem\": {\n\t\t\"name\": \"New item\",\n\t\t\"description\": \"Tasty new menu item\",\n\t\t\"inventory\": 10,\n\t\t\"price\": 2.5\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/menus/:menuId/menu-items",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"menus",
+								":menuId",
+								"menu-items"
+							],
+							"variable": [
+								{
+									"key": "menuId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the menu."
+								}
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"menuItem\": {\n\t\t\"id\": 3,\n\t\t\"name\": \"New item\",\n\t\t\"description\": \"Tasty new menu item\",\n\t\t\"inventory\": 10,\n\t\t\"price\": 2.5,\n\t\t\"menuId\": 1\n\t}\n}"
+				},
+				{
+					"name": "Request was not understood by server. Invalid or incomplete request may be missing a required field.",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"menuItem\": {\n\t\t\"name\": \"New item\",\n\t\t\"description\": \"Tasty new menu item\",\n\t\t\"inventory\": 10,\n\t\t\"price\": 2.5\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/menus/:menuId/menu-items",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"menus",
+								":menuId",
+								"menu-items"
+							],
+							"variable": [
+								{
+									"key": "menuId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the menu."
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				},
+				{
+					"name": "Not found with the supplied id. Note: An id is invalid if it is not an integer or an entity with that id does not exist in the system.",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"menuItem\": {\n\t\t\"name\": \"New item\",\n\t\t\"description\": \"Tasty new menu item\",\n\t\t\"inventory\": 10,\n\t\t\"price\": 2.5\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/menus/:menuId/menu-items",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"menus",
+								":menuId",
+								"menu-items"
+							],
+							"variable": [
+								{
+									"key": "menuId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the menu."
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				},
+				{
+					"name": "Request failed. An unexpected error occured.",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"menuItem\": {\n\t\t\"name\": \"New item\",\n\t\t\"description\": \"Tasty new menu item\",\n\t\t\"inventory\": 10,\n\t\t\"price\": 2.5\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/menus/:menuId/menu-items",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"menus",
+								":menuId",
+								"menu-items"
+							],
+							"variable": [
+								{
+									"key": "menuId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the menu."
+								}
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update a menu item",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"menuItem\": {\n\t\t\"name\": \"Updated item\",\n\t\t\"description\": \"Updated item description\",\n\t\t\"inventory\": 10,\n\t\t\"price\": 2.5\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/menus/:menuId/menu-items/:menuItemId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"menus",
+						":menuId",
+						"menu-items",
+						":menuItemId"
+					],
+					"variable": [
+						{
+							"key": "menuId",
+							"value": "<integer>",
+							"description": "(Required) The unique identifier of the menu."
+						},
+						{
+							"key": "menuItemId",
+							"value": "80872973",
+							"description": "(Required) The unique identifier of the menu item."
+						}
+					]
+				},
+				"description": "Updates a menu item's information on the system using the supplied menuItemId and menuId."
+			},
+			"response": [
+				{
+					"name": "Request was successful. The item was successfully updated in the system and the response body will contain the updated data in the 'menuItem' field. See the example.",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"menuItem\": {\n\t\t\"name\": \"Updated item\",\n\t\t\"description\": \"Updated item description\",\n\t\t\"inventory\": 10,\n\t\t\"price\": 2.5\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/menus/:menuId/menu-items/:menuItemId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"menus",
+								":menuId",
+								"menu-items",
+								":menuItemId"
+							],
+							"variable": [
+								{
+									"key": "menuId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the menu."
+								},
+								{
+									"key": "menuItemId",
+									"value": "80872973",
+									"description": "(Required) The unique identifier of the menu item."
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"menuItem\": {\n\t\t\"id\": 3,\n\t\t\"name\": \"New item\",\n\t\t\"description\": \"Updated item description\",\n\t\t\"inventory\": 10,\n\t\t\"price\": 2.5,\n\t\t\"menuId\": 1\n\t}\n}"
+				},
+				{
+					"name": "Request was not understood by server. Invalid or incomplete request may be missing a required field.",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"menuItem\": {\n\t\t\"name\": \"Updated item\",\n\t\t\"description\": \"Updated item description\",\n\t\t\"inventory\": 10,\n\t\t\"price\": 2.5\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/menus/:menuId/menu-items/:menuItemId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"menus",
+								":menuId",
+								"menu-items",
+								":menuItemId"
+							],
+							"variable": [
+								{
+									"key": "menuId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the menu."
+								},
+								{
+									"key": "menuItemId",
+									"value": "80872973",
+									"description": "(Required) The unique identifier of the menu item."
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				},
+				{
+					"name": "Not found with the supplied id. Note: An id is invalid if it is not an integer or an entity with that id does not exist in the system.",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"menuItem\": {\n\t\t\"name\": \"Updated item\",\n\t\t\"description\": \"Updated item description\",\n\t\t\"inventory\": 10,\n\t\t\"price\": 2.5\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/menus/:menuId/menu-items/:menuItemId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"menus",
+								":menuId",
+								"menu-items",
+								":menuItemId"
+							],
+							"variable": [
+								{
+									"key": "menuId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the menu."
+								},
+								{
+									"key": "menuItemId",
+									"value": "80872973",
+									"description": "(Required) The unique identifier of the menu item."
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				},
+				{
+					"name": "Request failed. An unexpected error occured.",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"menuItem\": {\n\t\t\"name\": \"Updated item\",\n\t\t\"description\": \"Updated item description\",\n\t\t\"inventory\": 10,\n\t\t\"price\": 2.5\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/menus/:menuId/menu-items/:menuItemId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"menus",
+								":menuId",
+								"menu-items",
+								":menuItemId"
+							],
+							"variable": [
+								{
+									"key": "menuId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the menu."
+								},
+								{
+									"key": "menuItemId",
+									"value": "80872973",
+									"description": "(Required) The unique identifier of the menu item."
+								}
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Remove a menu item",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/menus/:menuId/menu-items/:menuItemId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"menus",
+						":menuId",
+						"menu-items",
+						":menuItemId"
+					],
+					"variable": [
+						{
+							"key": "menuId",
+							"value": "<integer>",
+							"description": "(Required) The unique identifier of the menu."
+						},
+						{
+							"key": "menuItemId",
+							"value": "<integer>",
+							"description": "(Required) The unique identifier of the menu item."
+						}
+					]
+				},
+				"description": "Permanently removes an item from a menu in the system using the supplied menuId and menuItemId."
+			},
+			"response": [
+				{
+					"name": "Successfully removed the item.",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/menus/:menuId/menu-items/:menuItemId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"menus",
+								":menuId",
+								"menu-items",
+								":menuItemId"
+							],
+							"variable": [
+								{
+									"key": "menuId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the menu."
+								},
+								{
+									"key": "menuItemId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the menu item."
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Not found with the supplied id. Note: An id is invalid if it is not an integer or an entity with that id does not exist in the system.",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/menus/:menuId/menu-items/:menuItemId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"menus",
+								":menuId",
+								"menu-items",
+								":menuItemId"
+							],
+							"variable": [
+								{
+									"key": "menuId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the menu."
+								},
+								{
+									"key": "menuItemId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the menu item."
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				},
+				{
+					"name": "Request failed. An unexpected error occured.",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/menus/:menuId/menu-items/:menuItemId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"menus",
+								":menuId",
+								"menu-items",
+								":menuItemId"
+							],
+							"variable": [
+								{
+									"key": "menuId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the menu."
+								},
+								{
+									"key": "menuItemId",
+									"value": "<integer>",
+									"description": "(Required) The unique identifier of the menu item."
+								}
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n\t\"message\": \"mollit Lorem sint\"\n}"
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:4000/api",
+			"type": "string"
+		}
+	]
+}
