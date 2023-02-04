@@ -106,7 +106,6 @@ Employee:
 | name     | Full name                     | string  | yes      |
 | position | Position or Role              | string  | yes      |
 | wage     | Total wages earned in dollars | integer | yes      |
-|          |                               |         |          |
 
 Example:
 
@@ -197,7 +196,7 @@ Example:
 
 ### 4. _Update an employee_
 
-Updates an employee's information in the system using data from the request body and the supplied employeeId.
+Updates an employee's information in the system using data from the request body and their employeeId.
 
 #### **Request:**
 
@@ -217,7 +216,6 @@ Employee:
 | name     | Full name                     | string  | yes      |
 | position | Position or Role              | string  | yes      |
 | wage     | Total wages earned in dollars | integer | yes      |
-|          |                               |         |          |
 
 Example:
 
@@ -263,7 +261,7 @@ Request successful. The employee was updated in the system and the response body
 
 ### 5. _Remove an employee_
 
-This does not permanently remove an employee's records but instead marks them in the system as not a current employee using the supplied employeeId and retains the employee's data for record keeping. Subsequent GET requests for all current employees won't include this employee in its response.
+This does not permanently remove an employee's records but instead marks them in the system as not a current employee using their employeeId and retains the employee's data for record keeping. Subsequent GET requests for all current employees won't include this employee in its response.
 
 #### **Request:**
 
@@ -310,7 +308,6 @@ Timesheet:
 | rate        | Pay earned per hour of work in $/hour      | integer | no        |
 | date        | Date the work was done in the format '...' | integer | no        |
 | employee_id | Identifier for the related employee        | integer | yes       |
-|             |                                            |         |
 
 Example:
 
@@ -345,7 +342,7 @@ Example:
 
 ### 2. _Add a new timesheet_
 
-Adds new timesheet data to the system using data provided in the request body. Added data is linked to an employee using the supplied employeeId.
+Adds new timesheet data to the system using data provided in the request body. Added data is linked to an employee using their employeeId in the request path.
 
 #### **Request:**
 
@@ -365,7 +362,6 @@ Timesheet:
 | hours    | Number of hours worked                     | integer | yes      |
 | rate     | Pay earned per hour of work in $/hour      | integer | yes      |
 | date     | Date the work was done in the format '...' | integer | yes      |
-|          |                                            |         |          |
 
 Example:
 
@@ -411,7 +407,7 @@ Request successful. New timesheet data was added to the system and the response 
 
 ### 3. _Update a timesheet_
 
-Updates timesheet data related to an employee with data provided in the request body, using the supplied timesheetId and employeeId.
+Updates timesheet data related to an employee with data provided in the request body, using its timesheetId and their employeeId respectively.
 
 #### **Request:**
 
@@ -431,7 +427,6 @@ Timesheet:
 | hours    | Number of hours worked                     | integer | yes      |
 | rate     | Pay earned per hour of work in $/hour      | integer | yes      |
 | date     | Date the work was done in the format '...' | integer | yes      |
-|          |                                            |         |          |
 
 Example:
 
@@ -523,7 +518,6 @@ Menu:
 | -------- | ------------------------ | ------- | --------- |
 | id       | Menu's unique identifier | integer | yes       |
 | title    | A short title            | string  | no        |
-|          |                          |         |
 
 Example:
 
@@ -566,7 +560,6 @@ Menu:
 | Property | Description   | Type   | Required |
 | -------- | ------------- | ------ | -------- |
 | Title    | A short title | string | yes      |
-|          |               |        |          |
 
 Example:
 
@@ -642,7 +635,7 @@ Example:
 
 ### 4. _Update a menu_
 
-Updates a menu's information in the system using the supplied menuId.
+Updates a menu's information in the system using its menuId.
 
 #### **Request:**
 
@@ -660,7 +653,6 @@ Menu:
 | Property | Description   | Type   | Required |
 | -------- | ------------- | ------ | -------- |
 | Title    | A short title | string | yes      |
-|          |               |        |          |
 
 Example:
 
@@ -703,7 +695,7 @@ Example:
 
 ### 5. _Remove a menu_
 
-Permanently removes a menu from the system using the supplied menuId, if that menu has no related menu items. It fails with a 400 response code if the menu has items in it. You must first remove 
+Permanently removes a menu from the system using its menuId, if that menu has no related items. It fails with a 400 response code if any related items remains. All related menu items must first be [removed](#remove_menu).
 
 > NOTE: menuId is required for this request.
 
@@ -751,7 +743,6 @@ Menu Item:
 | inventory   | Number of units currently in stock | integer | no        |
 | price       | Price of one unit in dollars       | integer | no        |
 | menu_id     | Unique identifier of related menu  | integer | yes       |
-|             |                                    |         |           |
 
 Example:
 
@@ -784,7 +775,7 @@ Example:
 
 ### 2. _Add a new menu item_
 
-Adds a new item to the system using the data supplied in the request body. Created item is linked to a menu using the supplied menuId.
+Adds a new item to the system using the data in the request body. Created item is linked to a menu using the supplied menuId.
 
 #### **Request:**
 
@@ -794,9 +785,9 @@ Adds a new item to the system using the data supplied in the request body. Creat
 
 #### Body (**raw**)
 
-The request body should contain a 'menuItem' field with data for the proposed update. See the example. The request will fail with a 400 response code if the menuItem object or any of its required fields are missing.
+The request body should contain a 'menuItem' property with data for the proposed update. See the example. The request will fail with a 400 response code if the menuItem object or any of its required properties are missing.
 
-menuItem:
+Menu Item:
 
 | Property    | Description                        | Type    | Required |
 | ----------- | ---------------------------------- | ------- | -------- |
@@ -804,7 +795,6 @@ menuItem:
 | description | Full description                   | string  | yes      |
 | inventory   | Number of units currently in stock | integer | yes      |
 | price       | Price of one unit in dollars       | integer | yes      |
-|             |                                    |         |          |
 
 Example:
 
@@ -824,6 +814,10 @@ Example:
 #### **Responses:**
 
 ##### 201:
+
+Request successful. The item was added and the response body will contain the added data in the 'menuItem' property. See the example.
+
+Example:
 
 ```json
 "body": {
@@ -850,7 +844,7 @@ Example:
 
 ### _Update a menu item_
 
-Updates a menu item's information on the system using the supplied menuItemId and menuId.
+Updates a menu item's information in the system using the supplied menuItemId and menuId.
 
 #### **Request:**
 
@@ -858,20 +852,39 @@ Updates a menu item's information on the system using the supplied menuItemId an
 
 #### Body (**raw**)
 
+The request body should contain a 'menuItem' property with data for the proposed update. See the example. The request will fail with a 400 response code if the menuItem object or any of its required properties are missing.
+
+Menu Item:
+
+| Property    | Description                        | Type    | Required |
+| ----------- | ---------------------------------- | ------- | -------- |
+| name        | Complete name                      | string  | yes      |
+| description | Full description                   | string  | yes      |
+| inventory   | Number of units currently in stock | integer | yes      |
+| price       | Price of one unit in dollars       | integer | yes      |
+
+Example:
+
 ```json
 "body": {
   . . .
 
   "menuItem": {
     "name": "Updated item",
-    "description": "Updated item description",
+    "description": "Updated description",
     "inventory": 10,
     "price": 2.5
   }
 }
 ```
 
-### Response: 200
+#### **Responses:**
+
+##### 200:
+
+Request successful. The item was successfully updated in the system and the response body will contain the updated data in the 'menuItem' property. See the example.
+
+Example:
 
 ```json
 "body": {
@@ -879,8 +892,8 @@ Updates a menu item's information on the system using the supplied menuItemId an
 
   "menuItem": {
     "id": 3,
-    "name": "New item",
-    "description": "Updated item description",
+    "name": "Updated item",
+    "description": "Updated description",
     "inventory": 10,
     "price": 2.5,
     "menuId": 1
@@ -888,29 +901,29 @@ Updates a menu item's information on the system using the supplied menuItemId an
 }
 ```
 
+##### 400:
+
+##### 404:
+
+##### 500:
+
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
-<h3 style="">Remove a menu item<>
+<h3 id="remove_menu" style="font-style: italic">Remove a menu item</h3>
 
-Permanently removes an item from a menu in the system using the supplied menuId and menuItemId.
+Permanently removes an item related to a menu using the supplied menuItemId and menuId.
 
-### Method: DELETE
+#### **Request:**
 
-```
-http://localhost:4000/api/menus/:menuId/menu-items/:menuItemId
-```
+<span style="color: red">DELETE</span> `http://localhost:4000/api/menus/:menuId/menu-items/:menuItemId`
 
-### Headers
+#### **Responses:**
 
-| Content-Type | Value            |
-| ------------ | ---------------- |
-| Accept       | application/json |
+##### 204: Request successful. Item was removed.
 
-### Response: 204
+##### 404:
 
-```json
-
-```
+##### 500:
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
