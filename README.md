@@ -61,7 +61,7 @@ Example:
 
 ```json
 "body": {
-  . . .
+  ...
 
   "employees": [
     {
@@ -111,7 +111,7 @@ Example:
 
 ```json
 "body": {
-  . . .
+  ...
 
   "employee": {
     "name": "New Employee",
@@ -131,7 +131,7 @@ Example:
 
 ```json
 "body": {
-  . . .
+  ...
 
   "employee": {
     "id": 3,
@@ -172,7 +172,7 @@ Example:
 
 ```json
 "body": {
-  . . .
+  ...
 
   "employee": {
     "id": 1,
@@ -221,7 +221,7 @@ Example:
 
 ```json
 "body": {
-  . . .
+  ...
 
   "employee": {
     "name": "Updated Employee",
@@ -239,7 +239,7 @@ Request successful. The employee was updated in the system and the response body
 
 ```json
 "body": {
-  . . .
+  ...
 
   "employee": {
     "id": 3,
@@ -313,7 +313,7 @@ Example:
 
 ```json
 "body": {
-  . . .
+  ...
 
   "timesheets": [
     {
@@ -367,7 +367,7 @@ Example:
 
 ```json
 "body": {
-  . . .
+  ...
 
   "timesheet": {
     "hours": 10,
@@ -385,7 +385,7 @@ Request successful. New timesheet data was added to the system and the response 
 
 ```json
 "body": {
-  . . .
+  ...
 
   "timesheet": {
     "id": 3,
@@ -432,7 +432,7 @@ Example:
 
 ```json
 "body": {
-  . . .
+  ...
 
   "timesheet": {
     "hours": 11,
@@ -450,7 +450,7 @@ Request successful. The timesheet was updated in the system and the response bod
 
 ```json
 "body": {
-  . . .
+  ...
 
   "timesheet": {
     "id": 1,
@@ -523,7 +523,7 @@ Example:
 
 ```json
 "body": {
-  . . .
+  ...
 
   "menus": [
     {
@@ -565,7 +565,7 @@ Example:
 
 ```json
 "body": {
-  . . .
+  ...
 
   "menu": {
     "title": "New Menu"
@@ -583,7 +583,7 @@ Example:
 
 ```json
 "body": {
-  . . .
+  ...
 
   "menu": {
     "id": 3,
@@ -618,7 +618,7 @@ Example:
 
 ```json
 "body": {
-  . . .
+  ...
 
   "menu": {
     "id": 1,
@@ -658,7 +658,7 @@ Example:
 
 ```json
 "body": {
-  . . .
+  ...
 
   "menu": {
     "title": "Updated Title"
@@ -676,7 +676,7 @@ Example:
 
 ```json
 "body": {
-  . . .
+  ...
 
   "menu": {
     "id": 3,
@@ -748,7 +748,7 @@ Example:
 
 ```json
 "body": {
-  . . .
+  ...
 
   "menuItems": [
     {
@@ -800,7 +800,7 @@ Example:
 
 ```json
 "body": {
-  . . .
+  ...
 
   "menuItem": {
     "name": "New item",
@@ -821,7 +821,7 @@ Example:
 
 ```json
 "body": {
-  . . .
+  ...
 
   "menuItem": {
     "id": 3,
@@ -867,7 +867,7 @@ Example:
 
 ```json
 "body": {
-  . . .
+  ...
 
   "menuItem": {
     "name": "Updated item",
@@ -888,7 +888,7 @@ Example:
 
 ```json
 "body": {
-  . . .
+  ...
 
   "menuItem": {
     "id": 3,
