@@ -192,6 +192,8 @@ Example response body (**JSON**):
 
 ##### 404:
 
+[See details](#res_404).
+
 ##### 500:
 
 [See details](#res_500).
@@ -259,6 +261,8 @@ Example response body (**JSON**):
 
 ##### 404:
 
+[See details](#res_404).
+
 ##### 400:
 
 [See details](#res_400).
@@ -286,6 +290,8 @@ This does not permanently remove an employee's records but instead marks them in
 Successfully removed the employee.
 
 ##### 404:
+
+[See details](#res_404).
 
 ##### 500:
 
@@ -349,6 +355,8 @@ Example response body (**JSON**):
 ```
 
 ##### 404:
+
+[See details](#res_404).
 
 ##### 500:
 
@@ -421,6 +429,8 @@ Example response body (**JSON**):
 
 ##### 404:
 
+[See details](#res_404).
+
 ##### 500:
 
 [See details](#res_500).
@@ -492,6 +502,8 @@ Example response body (**JSON**):
 
 ##### 404:
 
+[See details](#res_404).
+
 ##### 500:
 
 [See details](#res_500).
@@ -517,6 +529,8 @@ Permanently removes timesheet data from the system using its timesheetId.
 Successfully removed the timesheet.
 
 ##### 404:
+
+[See details](#res_404).
 
 ##### 500:
 
@@ -665,6 +679,8 @@ Example response body (**JSON**):
 
 ##### 404:
 
+[See details](#res_404).
+
 ##### 500:
 
 [See details](#res_500).
@@ -729,6 +745,8 @@ Example response body (**JSON**):
 
 ##### 404:
 
+[See details](#res_404).
+
 ##### 500:
 
 [See details](#res_500).
@@ -752,6 +770,8 @@ Permanently removes a menu from the system using its menuId, if that menu has no
 Successfully removed the menu.
 
 ##### 404:
+
+[See details](#res_404).
 
 ##### 500:
 
@@ -889,6 +909,8 @@ Example response body (**JSON**):
 
 ##### 404:
 
+[See details](#res_404).
+
 ##### 500:
 
 [See details](#res_500).
@@ -963,6 +985,8 @@ Example response body (**JSON**):
 
 ##### 404:
 
+[See details](#res_404).
+
 ##### 500:
 
 [See details](#res_500).
@@ -985,6 +1009,8 @@ Permanently removes an item related to a menu using the supplied menuItemId and 
 
 ##### 404:
 
+[See details](#res_404).
+
 ##### 500:
 
 [See details](#res_500).
@@ -995,6 +1021,18 @@ Permanently removes an item related to a menu using the supplied menuItemId and 
 
 <h5 id="res_400">400:</h5>
 Invalid or incomplete request was not understood by the server. The request body may be missing one or all required properties.
+
+<h5 id="res_404">404:</h5>
+Request did not succeed because an employee with the supplied employeeId, timesheetId, menuId or menuItemId does not exist in the system. The response body will, instead, contain a "message" property with stating that. See the example.  
+Check the employeeId and try again.
+
+Example 404 response body(**JSON**):
+
+```json
+"body": {
+  "message": "No employee with that id"
+}
+```
 
 <h5 id="res_500">500:</h5>
 Request was unsuccessful. An unexpected error occured.
