@@ -259,13 +259,13 @@ Example response body (**JSON**):
 }
 ```
 
-##### 404:
-
-[See details](#res_404).
-
 ##### 400:
 
 [See details](#res_400).
+
+##### 404:
+
+[See details](#res_404).
 
 ##### 500:
 
