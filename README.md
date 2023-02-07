@@ -30,7 +30,29 @@ All the requests in the current version can be run without any authorization.
 
 ## **Endpoints**
 
-When running locally, all request paths should be prefixed with `http://localhost:4000/api`
+When working locally, all request paths should be prefixed with `http://localhost:4000/api`
+
+### **PATHS**
+
+[Employees]()
+
+- [/employees]()
+- [/employees/:employeeId]()
+
+[Timesheets]()
+
+- [/employees/:employeeId/timesheets]()
+- [/employees/:employeeId/timesheets/:timesheetId]()
+
+[Menus]()
+
+- [/menus]()
+- [/menus/:menuId]()
+
+[Menu Items]()
+
+- [/menus/:menuId/menuItems]()
+- [/menus/:menuId/menuItems/:menuItemId]()
 
 ### <ins>**EMPLOYEES**</ins>
 
