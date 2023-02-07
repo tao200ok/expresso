@@ -30,6 +30,8 @@ All the requests in the current version can be run without any authorization.
 
 ## **Endpoints**
 
+When running locally, all request paths should be prefixed with `http://localhost:4000/api`
+
 ### <ins>**EMPLOYEES**</ins>
 
 ### 1. _Read all employees_
@@ -38,7 +40,7 @@ Retrieves all current employees in the system.
 
 #### **Request:**
 
-<span style="color: green">GET `http://localhost:4000/api/employees`
+<span style="color: green">GET `/employees`
 
 #### **Responses:**
 
@@ -95,7 +97,7 @@ Creates a new employee in the system using data supplied in the request body.
 
 #### **Request:**
 
-<span style="color: yellow">POST</span> `http://localhost:4000/api/employees`
+<span style="color: yellow">POST</span> `/employees`
 
 ##### Body:
 
@@ -162,7 +164,7 @@ Retrieves an employee's information from the system using their employeeId.
 
 #### **Request:**
 
-<span style="color: green">GET</span> `http://localhost:4000/api/employees/:employeeId`
+<span style="color: green">GET</span> `/employees/:employeeId`
 
 > NOTE: employeeId is required for this request.
 
@@ -202,7 +204,7 @@ Updates an employee's information in the system using data from the request body
 
 #### **Request:**
 
-<span style="color: blue">PUT</span> `http://localhost:4000/api/employees/:employeeId`
+<span style="color: blue">PUT</span> `/employees/:employeeId`
 
 > NOTE: employeeId is required for this request.
 
@@ -273,7 +275,7 @@ This does not permanently remove an employee's records but instead marks them in
 
 #### **Request:**
 
-<span style="color: red">DELETE</span> `http://localhost:4000/api/employees/:employeeId`
+<span style="color: red">DELETE</span> `/employees/:employeeId`
 
 > NOTE: employeeId is required for this request.
 
@@ -299,7 +301,7 @@ Retrieves all timesheet data related to an employee using their employeeId.
 
 #### **Request:**
 
-<span style="color: green">GET</span> `http://localhost:4000/api/employees/:employeeId/timesheets`
+<span style="color: green">GET</span> `/employees/:employeeId/timesheets`
 
 > NOTE: employeeId is required for this request.
 
@@ -360,7 +362,7 @@ Adds new timesheet data to the system using data provided in the request body. A
 
 #### **Request:**
 
-<span style="color: yellow">POST</span> `http://localhost:4000/api/employees/:employeeId/timesheets`
+<span style="color: yellow">POST</span> `/employees/:employeeId/timesheets`
 
 > NOTE: employeeId is required for this request.
 
@@ -431,7 +433,7 @@ Updates timesheet data related to an employee with data provided in the request 
 
 #### **Request:**
 
-<span style="color: blue">PUT</span> `http://localhost:4000/api/employees/:employeeId/timesheets/:timesheetId`
+<span style="color: blue">PUT</span> `/employees/:employeeId/timesheets/:timesheetId`
 
 > NOTE: Both employeeId and timesheetId are required for this request.
 
@@ -504,7 +506,7 @@ Permanently removes timesheet data from the system using its timesheetId.
 
 #### **Request:**
 
-<span style="color: #ff0000">DELETE</span> `http://localhost:4000/api/employees/:employeeId/timesheets/:timesheetId`
+<span style="color: #ff0000">DELETE</span> `/employees/:employeeId/timesheets/:timesheetId`
 
 > NOTE: Both employeeId and timesheetId are required for this request.
 
@@ -530,7 +532,7 @@ Retrieves all menus in the system.
 
 #### **Request:**
 
-<span style="color: green">GET</span> `http://localhost:4000/api/menus`
+<span style="color: green">GET</span> `/menus`
 
 #### **Responses:**
 
@@ -578,7 +580,7 @@ Creates a new menu in the system with the data from the request body.
 
 #### **Request:**
 
-#### <span style="color: yellow">POST</span> `http://localhost:4000/api/menus`
+#### <span style="color: yellow">POST</span> `/menus`
 
 ##### Body:
 
@@ -638,7 +640,7 @@ Retrieves a menu's information from the system using its menuId.
 
 #### **Request:**
 
-<span style="color: green">GET</span> `http://localhost:4000/api/menus/:menuId`
+<span style="color: green">GET</span> `/menus/:menuId`
 
 > NOTE: menuId is required for this request.
 
@@ -675,7 +677,7 @@ Updates a menu's information in the system using its menuId.
 
 #### **Request:**
 
-<span style="color: blue">PUT</span> `http://localhost:4000/api/menus/:menuId`
+<span style="color: blue">PUT</span> `/menus/:menuId`
 
 > NOTE: menuId is required for this request.
 
@@ -737,11 +739,11 @@ Example response body (**JSON**):
 
 Permanently removes a menu from the system using its menuId, if that menu has no related items. It fails with a 400 response code if any related items remains. All related menu items must first be [removed](#remove_menu).
 
-> NOTE: menuId is required for this request.
-
 #### **Request:**
 
-<span style="color: red">DELETE</span> `http://localhost:4000/api/menus/:menuId`
+<span style="color: red">DELETE</span> `/menus/:menuId`
+
+> NOTE: menuId is required for this request.
 
 #### **Responses:**
 
@@ -765,7 +767,7 @@ Retrieves all items in a menu using its menuId.
 
 #### **Request:**
 
-<span style="color: green">GET<span> `http://localhost:4000/api/menus/:menuId/menu-items`
+<span style="color: green">GET<span> `/menus/:menuId/menu-items`
 
 > NOTE: menuId is required for this request.
 
@@ -825,7 +827,7 @@ Adds a new item to the system using the data in the request body. Created item i
 
 #### **Request:**
 
-<span style="color: yellow">POST</span> `http://localhost:4000/api/menus/:menuId/menu-items`
+<span style="color: yellow">POST</span> `/menus/:menuId/menu-items`
 
 > NOTE: menuId is required for this request.
 
@@ -899,7 +901,9 @@ Updates a menu item's information in the system using the supplied menuItemId an
 
 #### **Request:**
 
-<span style="color: blue">PUT</span> `http://localhost:4000/api/menus/:menuId/menu-items/:menuItemId`
+<span style="color: blue">PUT</span> `/menus/:menuId/menu-items/:menuItemId`
+
+> NOTE: Both menuId and menuItemId are required for this request.
 
 ##### Body:
 
@@ -971,7 +975,9 @@ Permanently removes an item related to a menu using the supplied menuItemId and 
 
 #### **Request:**
 
-<span style="color: red">DELETE</span> `http://localhost:4000/api/menus/:menuId/menu-items/:menuItemId`
+<span style="color: red">DELETE</span> `/menus/:menuId/menu-items/:menuItemId`
+
+> NOTE: Both menuId and menuItemId are required for this request.
 
 #### **Responses:**
 
