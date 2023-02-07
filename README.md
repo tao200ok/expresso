@@ -58,7 +58,7 @@ Employee:
 | wage                | Total wages earned in dollars | integer | no        |
 | is_current_employee |                               | integer | yes       |
 
-Example:
+Example response body (**JSON**):
 
 ```json
 "body": {
@@ -87,7 +87,7 @@ Example:
 
 [See details](#res_500).
 
-⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+<hr/>
 
 ### 2. _Add a new employee_
 
@@ -110,7 +110,7 @@ Employee:
 | position | Position or Role              | string  | yes      |
 | wage     | Total wages earned in dollars | integer | yes      |
 
-Example:
+Example request body (**JSON**):
 
 ```json
 "body": {
@@ -130,7 +130,7 @@ Example:
 
 Request successful. The employee was added and the response body's 'employee' property will contain the newly added data, as it is in the system. See the example.
 
-Example:
+Example response body (**JSON**):
 
 ```json
 "body": {
@@ -154,7 +154,7 @@ Example:
 
 [See details](#res_500).
 
-⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+<hr/>
 
 ### 3. _Read an employee_
 
@@ -170,8 +170,9 @@ Retrieves an employee's information from the system using their employeeId.
 
 ##### 200:
 
-Request successful. Response body's 'employee' property will contain the requested data. See the example.  
-Example:
+Request successful. Response body's 'employee' property will contain the requested data. See the example.
+
+Example response body (**JSON**):
 
 ```json
 "body": {
@@ -193,7 +194,7 @@ Example:
 
 [See details](#res_500).
 
-⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+<hr/>
 
 ### 4. _Update an employee_
 
@@ -218,7 +219,7 @@ Employee:
 | position | Position or Role              | string  | yes      |
 | wage     | Total wages earned in dollars | integer | yes      |
 
-Example:
+Example request body (**JSON**):
 
 ```json
 "body": {
@@ -238,7 +239,7 @@ Example:
 
 Request successful. The employee was updated in the system and the response body's 'employee' property will contain the updated data. See the example.
 
-Example:
+Example response body (**JSON**):
 
 ```json
 "body": {
@@ -264,7 +265,7 @@ Example:
 
 [See details](#res_500).
 
-⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+<hr/>
 
 ### 5. _Remove an employee_
 
@@ -288,7 +289,7 @@ Successfully removed the employee.
 
 [See details](#res_500).
 
-⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+<hr/>
 
 ### <ins>**TIMESHEETS**</ins>
 
@@ -320,7 +321,7 @@ Timesheet:
 | date        | Date the work was done in the format '...' | integer | no        |
 | employee_id | Identifier for the related employee        | integer | yes       |
 
-Example:
+Example response body (**JSON**):
 
 ```json
 "body": {
@@ -351,7 +352,7 @@ Example:
 
 [See details](#res_500).
 
-⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+<hr/>
 
 ### 2. _Add a new timesheet_
 
@@ -376,7 +377,7 @@ Timesheet:
 | rate     | Pay earned per hour of work in $/hour      | integer | yes      |
 | date     | Date the work was done in the format '...' | integer | yes      |
 
-Example:
+Example request body (**JSON**):
 
 ```json
 "body": {
@@ -390,13 +391,13 @@ Example:
 }
 ```
 
-### **Responses**:
+#### **Responses**:
 
-#### 201:
+##### 201:
 
 Request successful. New timesheet data was added to the system and the response body's 'timesheet' property will contain the added data. See the example.
 
-Example:
+Example response body (**JSON**):
 
 ```json
 "body": {
@@ -422,7 +423,7 @@ Example:
 
 [See details](#res_500).
 
-⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+<hr/>
 
 ### 3. _Update a timesheet_
 
@@ -447,7 +448,7 @@ Timesheet:
 | rate     | Pay earned per hour of work in $/hour      | integer | yes      |
 | date     | Date the work was done in the format '...' | integer | yes      |
 
-Example:
+Example request body (**JSON**):
 
 ```json
 "body": {
@@ -466,6 +467,8 @@ Example:
 ##### 200:
 
 Request successful. The timesheet was updated in the system and the response body will contain the updated data in the 'timesheet' property. See the example.
+
+Example response body (**JSON**):
 
 ```json
 "body": {
@@ -491,7 +494,7 @@ Request successful. The timesheet was updated in the system and the response bod
 
 [See details](#res_500).
 
-⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+<hr/>
 
 ### 4. _Remove a timesheet_
 
@@ -544,7 +547,7 @@ Menu:
 | id       | Menu's unique identifier | integer | yes       |
 | title    | A short title            | string  | no        |
 
-Example:
+Example response body (**JSON**):
 
 ```json
 "body": {
@@ -567,7 +570,7 @@ Example:
 
 [See details](#res_500).
 
-⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+<hr/>
 
 ### 2. _Add new menu_
 
@@ -588,7 +591,7 @@ Menu:
 | -------- | ------------- | ------ | -------- |
 | Title    | A short title | string | yes      |
 
-Example:
+Example request body (**JSON**):
 
 ```json
 "body": {
@@ -606,7 +609,7 @@ Example:
 
 Request successful. The new menu was added to the system and the response body will contain the added data in the 'menu' property. See the example.
 
-Example:
+Example response body (**JSON**):
 
 ```json
 "body": {
@@ -627,7 +630,7 @@ Example:
 
 [See details](#res_500).
 
-⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+<hr/>
 
 ### 3. _Read a menu_
 
@@ -645,7 +648,7 @@ Retrieves a menu's information from the system using its menuId.
 
 Request successful. Response body will contain the requested data in the 'menu' property. See the example.
 
-Example:
+Example response body (**JSON**):
 
 ```json
 "body": {
@@ -664,7 +667,7 @@ Example:
 
 [See details](#res_500).
 
-⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+<hr/>
 
 ### 4. _Update a menu_
 
@@ -687,7 +690,7 @@ Menu:
 | -------- | ------------- | ------ | -------- |
 | Title    | A short title | string | yes      |
 
-Example:
+Example request body (**JSON**):
 
 ```json
 "body": {
@@ -705,7 +708,7 @@ Example:
 
 Request successful. The menu was updated in the system and the response body will contain the updated data in the 'menu' property. See the example.
 
-Example:
+Example response body (**JSON**):
 
 ```json
 "body": {
@@ -728,7 +731,7 @@ Example:
 
 [See details](#res_500).
 
-⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+<hr/>
 
 ### 5. _Remove a menu_
 
@@ -752,7 +755,7 @@ Successfully removed the menu.
 
 [See details](#res_500).
 
-⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+<hr/>
 
 ### <ins>**MENU ITEMS**</ins>
 
@@ -770,7 +773,7 @@ Retrieves all items in a menu using its menuId.
 
 ##### 200:
 
-Request successful. Response body will contain a 'menuItems' property with an array of objects, each representing individual menu item. See the example.
+Request successful. Response body will contain a 'menuItems' property with an array of objects, each representing individual items. See the example.
 
 Menu Item:
 
@@ -783,7 +786,7 @@ Menu Item:
 | price       | Price of one unit in dollars          | integer | no        |
 | menu_id     | Unique identifier of its related menu | integer | yes       |
 
-Example:
+Example response body (**JSON**):
 
 ```json
 "body": {
@@ -814,7 +817,7 @@ Example:
 
 [See details](#res_500).
 
-⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+<hr/>
 
 ### 2. _Add a new menu item_
 
@@ -840,7 +843,7 @@ Menu Item:
 | inventory   | Number of units currently in stock | integer | yes      |
 | price       | Price of one unit in dollars       | integer | yes      |
 
-Example:
+Example request body (**JSON**):
 
 ```json
 "body": {
@@ -861,7 +864,7 @@ Example:
 
 Request successful. The item was added and the response body will contain the added data in the 'menuItem' property. See the example.
 
-Example:
+Example response body (**JSON**):
 
 ```json
 "body": {
@@ -888,9 +891,9 @@ Example:
 
 [See details](#res_500).
 
-⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+<hr/>
 
-### _Update a menu item_
+### 3. _Update a menu item_
 
 Updates a menu item's information in the system using the supplied menuItemId and menuId.
 
@@ -912,7 +915,7 @@ Menu Item:
 | inventory   | Number of units currently in stock | integer | yes      |
 | price       | Price of one unit in dollars       | integer | yes      |
 
-Example:
+Example request body (**JSON**):
 
 ```json
 "body": {
@@ -933,7 +936,7 @@ Example:
 
 Request successful. The item was successfully updated in the system and the response body will contain the updated data in the 'menuItem' property. See the example.
 
-Example:
+Example response body (**JSON**):
 
 ```json
 "body": {
@@ -952,7 +955,7 @@ Example:
 
 ##### 400:
 
-[See details](#res_400).
+[See details](#400).
 
 ##### 404:
 
@@ -960,9 +963,9 @@ Example:
 
 [See details](#res_500).
 
-⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
+<hr/>
 
-<h3 id="remove_menu" style="font-style: italic">Remove a menu item</h3>
+<h3 id="remove_menu" style="font-style: italic">4. Remove a menu item</h3>
 
 Permanently removes an item related to a menu using the supplied menuItemId and menuId.
 
@@ -980,13 +983,12 @@ Permanently removes an item related to a menu using the supplied menuItemId and 
 
 [See details](#res_500).
 
-⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
-
----
+<hr/>
 
 ## **Common Responses**
 
-<h5 id="res_400">400:</h5>  
-Invalid or incomplete request was not understood by the server. The request body may be missing one or all required properties.  
-<h5 id="res_500">500:</h5>  
+<h5 id="res_400">400:</h5>
+Invalid or incomplete request was not understood by the server. The request body may be missing one or all required properties.
+
+<h5 id="res_500">500:</h5>
 Request was unsuccessful. An unexpected error occured.
