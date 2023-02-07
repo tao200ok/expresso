@@ -2,7 +2,7 @@
 
 Expresso is an internal system management tool for a coffee shop. It can also be adapted for businesses with similar structures.
 
-Use this documentation to test and play with this API on your local machine.
+Use this documentation to test and play with the API on your local machine.
 
 ## **Set it up**
 
@@ -46,6 +46,8 @@ Retrieves all current employees in the system.
 
 Request was successful. Response body will contain an 'employees' property with an array of objects, each representing individual employees. See the example below.
 
+> NOTE: If there are no current employees in the system, the array in the response will be empty.
+
 Employee:
 
 | Property            | Description                   | Type    | Read-only |
@@ -81,7 +83,9 @@ Example:
 }
 ```
 
-##### 500: [Click here to see more](#res_500).
+##### 500:
+
+[See details](#res_500).
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
@@ -93,7 +97,7 @@ Creates a new employee in the system using data supplied in the request body.
 
 <span style="color: yellow">POST</span> `http://localhost:4000/api/employees`
 
-#### Body (raw):
+##### Body:
 
 The request body should contain an 'employee' property with data for the new employee. See the example.  
 The request will fail with a 400 response code if the employee object or ANY of its required properties are missing.
@@ -144,11 +148,11 @@ Example:
 
 ##### 400:
 
-[Click here to see more](#res_400).
+[See details](#res_400).
 
 ##### 500:
 
-[Click here to see more](#res_500).
+[See details](#res_500).
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
@@ -166,7 +170,7 @@ Retrieves an employee's information from the system using their employeeId.
 
 ##### 200:
 
-Request successful. Response body's 'employee' property will contain the retrieved employee information. See the example.  
+Request successful. Response body's 'employee' property will contain the requested data. See the example.  
 Example:
 
 ```json
@@ -185,11 +189,9 @@ Example:
 
 ##### 404:
 
-[Click here to see more](#res_404).
-
 ##### 500:
 
-[Click here to see more](#res_500).
+[See details](#res_500).
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
@@ -203,7 +205,7 @@ Updates an employee's information in the system using data from the request body
 
 > NOTE: employeeId is required for this request.
 
-#### Body (**raw**)
+##### Body:
 
 The request body should contain an 'employee' property with the proposed update. See the example.  
 The request will fail with a 400 response code if the employee object or ANY of its required properties are missing.
@@ -236,6 +238,8 @@ Example:
 
 Request successful. The employee was updated in the system and the response body's 'employee' property will contain the updated data. See the example.
 
+Example:
+
 ```json
 "body": {
   . . .
@@ -254,13 +258,17 @@ Request successful. The employee was updated in the system and the response body
 
 ##### 400:
 
+[See details](#res_400).
+
 ##### 500:
+
+[See details](#res_500).
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
 ### 5. _Remove an employee_
 
-This does not permanently remove an employee's records but instead marks them in the system as not a current employee using their employeeId and retains the employee's data for record keeping. Subsequent GET requests for all current employees won't include this employee in its response.
+This does not permanently remove an employee's records but instead marks them in the system as not a current employee using their employeeId and retains their data for record keeping. Subsequent GET requests for all current employees won't include this employee in its response.
 
 #### **Request:**
 
@@ -277,6 +285,8 @@ Successfully removed the employee.
 ##### 404:
 
 ##### 500:
+
+[See details](#res_500).
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
@@ -297,6 +307,8 @@ Retrieves all timesheet data related to an employee using their employeeId.
 ##### 200:
 
 Request successful. Response body will contain a 'timesheets' property with an array of objects, each representing individual timesheet data. See the example.
+
+> NOTE: If there are no timesheets in the system related to the employee, the array in the response will be empty.
 
 Timesheet:
 
@@ -337,6 +349,8 @@ Example:
 
 ##### 500:
 
+[See details](#res_500).
+
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
 ### 2. _Add a new timesheet_
@@ -349,7 +363,7 @@ Adds new timesheet data to the system using data provided in the request body. A
 
 > NOTE: employeeId is required for this request.
 
-#### Body (**raw**)
+##### Body:
 
 The request body should contain data for the new timesheet in the 'timesheet' property. See the example.  
 The request will fail with a 400 response code if the timesheet object or ANY of its required properties are missing.
@@ -382,6 +396,8 @@ Example:
 
 Request successful. New timesheet data was added to the system and the response body's 'timesheet' property will contain the added data. See the example.
 
+Example:
+
 ```json
 "body": {
   . . .
@@ -398,9 +414,13 @@ Request successful. New timesheet data was added to the system and the response 
 
 ##### 400:
 
+[See details](#res_400).
+
 ##### 404:
 
 ##### 500:
+
+[See details](#res_500).
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
@@ -414,7 +434,7 @@ Updates timesheet data related to an employee with data provided in the request 
 
 > NOTE: Both employeeId and timesheetId are required for this request.
 
-#### Body (**raw**)
+##### Body:
 
 The request body should contain a 'timesheet' property with data for the proposed update. See the example.  
 The request will fail with a 400 response code if the timesheet object or ANY of its required properties are missing.
@@ -463,9 +483,13 @@ Request successful. The timesheet was updated in the system and the response bod
 
 ##### 400:
 
+[See details](#res_400).
+
 ##### 404:
 
 ##### 500:
+
+[See details](#res_500).
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
@@ -491,6 +515,8 @@ Successfully removed the timesheet.
 
 ##### 500:
 
+[See details](#res_500).
+
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
 ### <ins>**MENUS**</ins>
@@ -509,7 +535,7 @@ Retrieves all menus in the system.
 
 Request successful. Response body will contain a 'menus' property with an array of objects, each representing individual menus. See the example.
 
-> NOTE: If there are no menus in the system, the array in the response will be an empty array.
+> NOTE: If there are no menus in the system, the array in the response will be empty.
 
 Menu:
 
@@ -539,6 +565,8 @@ Example:
 
 ##### 500:
 
+[See details](#res_500).
+
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
 ### 2. _Add new menu_
@@ -549,10 +577,10 @@ Creates a new menu in the system with the data from the request body.
 
 #### <span style="color: yellow">POST</span> `http://localhost:4000/api/menus`
 
-#### Body (**raw**)
+##### Body:
 
 The request body should contain data for the new menu in the 'menu' property. See the example.  
-The request will fail with a 400 response code if the menu object or any of its required properties are missing.
+The request will fail with a 400 response code if the menu object or ANY of its required properties are missing.
 
 Menu:
 
@@ -593,7 +621,11 @@ Example:
 
 ##### 400:
 
+[See details](#res_400).
+
 ##### 500:
+
+[See details](#res_500).
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
@@ -611,7 +643,7 @@ Retrieves a menu's information from the system using its menuId.
 
 ##### 200:
 
-Request successful. Response body will contain the retrieved menu information in the 'menu' property. See the example.
+Request successful. Response body will contain the requested data in the 'menu' property. See the example.
 
 Example:
 
@@ -630,6 +662,8 @@ Example:
 
 ##### 500:
 
+[See details](#res_500).
+
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
 ### 4. _Update a menu_
@@ -642,10 +676,10 @@ Updates a menu's information in the system using its menuId.
 
 > NOTE: menuId is required for this request.
 
-#### Body (**raw**)
+##### Body:
 
 The request body should contain a 'menu' property with data for the proposed update. See the example.  
-The request will fail with a 400 response code if the menu object or any of its required properties are missing.
+The request will fail with a 400 response code if the menu object or ANY of its required properties are missing.
 
 Menu:
 
@@ -686,9 +720,13 @@ Example:
 
 ##### 400:
 
+[See details](#res_400).
+
 ##### 404:
 
 ##### 500:
+
+[See details](#res_500).
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
@@ -712,6 +750,8 @@ Successfully removed the menu.
 
 ##### 500:
 
+[See details](#res_500).
+
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
 ### <ins>**MENU ITEMS**</ins>
@@ -734,14 +774,14 @@ Request successful. Response body will contain a 'menuItems' property with an ar
 
 Menu Item:
 
-| Property    | Description                        | Type    | Read-only |
-| ----------- | ---------------------------------- | ------- | --------- |
-| id          | Item's unique identifier           | integer | yes       |
-| name        | Complete name                      | string  | no        |
-| description | Full description                   | string  | no        |
-| inventory   | Number of units currently in stock | integer | no        |
-| price       | Price of one unit in dollars       | integer | no        |
-| menu_id     | Unique identifier of related menu  | integer | yes       |
+| Property    | Description                           | Type    | Read-only |
+| ----------- | ------------------------------------- | ------- | --------- |
+| id          | Item's unique identifier              | integer | yes       |
+| name        | Complete name                         | string  | no        |
+| description | Full description                      | string  | no        |
+| inventory   | Number of units currently in stock    | integer | no        |
+| price       | Price of one unit in dollars          | integer | no        |
+| menu_id     | Unique identifier of its related menu | integer | yes       |
 
 Example:
 
@@ -770,6 +810,10 @@ Example:
 }
 ```
 
+##### 500:
+
+[See details](#res_500).
+
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
 ### 2. _Add a new menu item_
@@ -782,9 +826,10 @@ Adds a new item to the system using the data in the request body. Created item i
 
 > NOTE: menuId is required for this request.
 
-#### Body (**raw**)
+##### Body:
 
-The request body should contain a 'menuItem' property with data for the proposed update. See the example. The request will fail with a 400 response code if the menuItem object or any of its required properties are missing.
+The request body should contain a 'menuItem' property with data for the proposed update. See the example.  
+The request will fail with a 400 response code if the menuItem object or ANY of its required properties are missing.
 
 Menu Item:
 
@@ -835,9 +880,13 @@ Example:
 
 ##### 400:
 
+[See details](#res_400).
+
 ##### 404:
 
 ##### 500:
+
+[See details](#res_500).
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
@@ -849,9 +898,10 @@ Updates a menu item's information in the system using the supplied menuItemId an
 
 <span style="color: blue">PUT</span> `http://localhost:4000/api/menus/:menuId/menu-items/:menuItemId`
 
-#### Body (**raw**)
+##### Body:
 
-The request body should contain a 'menuItem' property with data for the proposed update. See the example. The request will fail with a 400 response code if the menuItem object or any of its required properties are missing.
+The request body should contain a 'menuItem' property with data for the proposed update. See the example.  
+The request will fail with a 400 response code if the menuItem object or ANY of its required properties are missing.
 
 Menu Item:
 
@@ -902,9 +952,13 @@ Example:
 
 ##### 400:
 
+[See details](#res_400).
+
 ##### 404:
 
 ##### 500:
+
+[See details](#res_500).
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
@@ -924,15 +978,15 @@ Permanently removes an item related to a menu using the supplied menuItemId and 
 
 ##### 500:
 
+[See details](#res_500).
+
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
 ---
 
 ## **Common Responses**
 
-_<span id="res_400">400</span>:_  
-Request was not understood by server. Invalid or incomplete request may be missing required field(s).  
-_<span id="res_500">500</span>:_  
+<h5 id="res_400">400:</h5>  
+Invalid or incomplete request was not understood by the server. The request body may be missing one or all required properties.  
+<h5 id="res_500">500:</h5>  
 Request was unsuccessful. An unexpected error occured.
-
-Powered By: [postman-to-markdown](https://github.com/bautistaj/postman-to-markdown/)
