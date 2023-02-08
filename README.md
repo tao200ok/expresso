@@ -32,29 +32,32 @@ All the requests in the current version can be run without any authorization.
 
 When working locally, all request paths should be prefixed with `http://localhost:4000/api`
 
-### **PATHS**
+### **CONTENTS**
 
-[Employees]()
+[Employees](#employees)
 
-- [/employees]()
-- [/employees/:employeeId]()
+- [/employees](#1-read-all-employees)
+- [/employees/:employeeId](#3-read-an-employee)
 
-[Timesheets]()
+[Timesheets](#timesheets)
 
-- [/employees/:employeeId/timesheets]()
-- [/employees/:employeeId/timesheets/:timesheetId]()
+- [/employees/:employeeId/timesheets](#1-read-an-employees-timesheets)
+- [/employees/:employeeId/timesheets/:timesheetId](#3-update-a-timesheet)
 
-[Menus]()
+[Menus](#menus)
 
-- [/menus]()
-- [/menus/:menuId]()
+- [/menus](#1-read-all-menus)
+- [/menus/:menuId](#3-read-a-menu)
 
-[Menu Items]()
+[Menu Items](#menu-items)
 
-- [/menus/:menuId/menuItems]()
-- [/menus/:menuId/menuItems/:menuItemId]()
+- [/menus/:menuId/menuItems](#1-read-a-menus-items)
+- [/menus/:menuId/menuItems/:menuItemId](#3-update-a-menu-item)
 
-### <ins>**EMPLOYEES**</ins>
+[Common Responses](#common-responses)  
+[Feedback](#feedback)
+
+### <ins id="employees">**EMPLOYEES**</ins>
 
 ### 1. _Read all employees_
 
@@ -109,7 +112,7 @@ Example response body (**JSON**):
 
 ##### 500:
 
-[See details](#res_500).
+[See details](#iii-500).
 
 <hr/>
 
@@ -172,11 +175,11 @@ Example response body (**JSON**):
 
 ##### 400:
 
-[See details](#res_400).
+[See details](#i-400).
 
 ##### 500:
 
-[See details](#res_500).
+[See details](#iii-500).
 
 <hr/>
 
@@ -214,11 +217,11 @@ Example response body (**JSON**):
 
 ##### 404:
 
-[See details](#res_404).
+[See details](#ii-404).
 
 ##### 500:
 
-[See details](#res_500).
+[See details](#iii-500).
 
 <hr/>
 
@@ -283,15 +286,15 @@ Example response body (**JSON**):
 
 ##### 400:
 
-[See details](#res_400).
+[See details](#i-400).
 
 ##### 404:
 
-[See details](#res_404).
+[See details](#ii-404).
 
 ##### 500:
 
-[See details](#res_500).
+[See details](#iii-500).
 
 <hr/>
 
@@ -313,15 +316,15 @@ Successfully removed the employee.
 
 ##### 404:
 
-[See details](#res_404).
+[See details](#ii-404).
 
 ##### 500:
 
-[See details](#res_500).
+[See details](#iii-500).
 
 <hr/>
 
-### <ins>**TIMESHEETS**</ins>
+### <ins id="timesheets">**TIMESHEETS**</ins>
 
 ### 1. _Read an employee's timesheets_
 
@@ -378,11 +381,11 @@ Example response body (**JSON**):
 
 ##### 404:
 
-[See details](#res_404).
+[See details](#ii-404).
 
 ##### 500:
 
-[See details](#res_500).
+[See details](#iii-500).
 
 <hr/>
 
@@ -447,15 +450,15 @@ Example response body (**JSON**):
 
 ##### 400:
 
-[See details](#res_400).
+[See details](#i-400).
 
 ##### 404:
 
-[See details](#res_404).
+[See details](#ii-404).
 
 ##### 500:
 
-[See details](#res_500).
+[See details](#iii-500).
 
 <hr/>
 
@@ -520,15 +523,15 @@ Example response body (**JSON**):
 
 ##### 400:
 
-[See details](#res_400).
+[See details](#i-400).
 
 ##### 404:
 
-[See details](#res_404).
+[See details](#ii-404).
 
 ##### 500:
 
-[See details](#res_500).
+[See details](#iii-500).
 
 <hr/>
 
@@ -552,15 +555,15 @@ Successfully removed the timesheet.
 
 ##### 404:
 
-[See details](#res_404).
+[See details](#ii-404).
 
 ##### 500:
 
-[See details](#res_500).
+[See details](#iii-500).
 
 ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 
-### <ins>**MENUS**</ins>
+### <ins id="menus">**MENUS**</ins>
 
 ### 1. _Read all menus_
 
@@ -606,7 +609,7 @@ Example response body (**JSON**):
 
 ##### 500:
 
-[See details](#res_500).
+[See details](#iii-500).
 
 <hr/>
 
@@ -662,11 +665,11 @@ Example response body (**JSON**):
 
 ##### 400:
 
-[See details](#res_400).
+[See details](#i-400).
 
 ##### 500:
 
-[See details](#res_500).
+[See details](#iii-500).
 
 <hr/>
 
@@ -701,11 +704,11 @@ Example response body (**JSON**):
 
 ##### 404:
 
-[See details](#res_404).
+[See details](#ii-404).
 
 ##### 500:
 
-[See details](#res_500).
+[See details](#iii-500).
 
 <hr/>
 
@@ -763,21 +766,21 @@ Example response body (**JSON**):
 
 ##### 400:
 
-[See details](#res_400).
+[See details](#i-400).
 
 ##### 404:
 
-[See details](#res_404).
+[See details](#ii-404).
 
 ##### 500:
 
-[See details](#res_500).
+[See details](#iii-500).
 
 <hr/>
 
 ### 5. _Remove a menu_
 
-Permanently removes a menu from the system using its menuId, if that menu has no related items. It fails with a 400 response code if any related items remains. All related menu items must first be [removed](#remove_menu).
+Permanently removes a menu from the system using its menuId, if that menu has no related items. It fails with a 400 response code if any related items remains. All related menu items must first be [removed](#4-remove-a-menu-item).
 
 #### **Request:**
 
@@ -793,15 +796,15 @@ Successfully removed the menu.
 
 ##### 404:
 
-[See details](#res_404).
+[See details](#ii-404).
 
 ##### 500:
 
-[See details](#res_500).
+[See details](#iii-500).
 
 <hr/>
 
-### <ins>**MENU ITEMS**</ins>
+### <ins id="menu-items">**MENU ITEMS**</ins>
 
 ### 1. _Read a menu's items_
 
@@ -859,7 +862,7 @@ Example response body (**JSON**):
 
 ##### 500:
 
-[See details](#res_500).
+[See details](#iii-500).
 
 <hr/>
 
@@ -927,15 +930,15 @@ Example response body (**JSON**):
 
 ##### 400:
 
-[See details](#res_400).
+[See details](#i-400).
 
 ##### 404:
 
-[See details](#res_404).
+[See details](#ii-404).
 
 ##### 500:
 
-[See details](#res_500).
+[See details](#iii-500).
 
 <hr/>
 
@@ -1003,19 +1006,19 @@ Example response body (**JSON**):
 
 ##### 400:
 
-[See details](#400).
+[See details](#i-400).
 
 ##### 404:
 
-[See details](#res_404).
+[See details](#ii-404).
 
 ##### 500:
 
-[See details](#res_500).
+[See details](#iii-500).
 
 <hr/>
 
-<h3 id="remove_menu" style="font-style: italic">4. Remove a menu item</h3>
+### 4. _Remove a menu item_
 
 Permanently removes an item related to a menu using the supplied menuItemId and menuId.
 
@@ -1031,21 +1034,23 @@ Permanently removes an item related to a menu using the supplied menuItemId and 
 
 ##### 404:
 
-[See details](#res_404).
+[See details](#ii-404).
 
 ##### 500:
 
-[See details](#res_500).
+[See details](#iii-500).
 
 <hr/>
 
 ## **Common Responses**
 
-<h5 id="res_400">400:</h5>
+##### i. 400:
+
 Invalid or incomplete request was not understood by the server. The request body may be missing one or all required properties.
 
-<h5 id="res_404">404:</h5>
-Request did not succeed because an employee with the supplied employeeId, timesheetId, menuId or menuItemId does not exist in the system. The response body will, instead, contain a "message" property with stating that. See the example.  
+##### ii. 404:
+
+Request did not succeed because an employee with the supplied employeeId, timesheetId, menuId or menuItemId does not exist in the system. The response body will, instead, contain a "message" property stating that. See the example.  
 Check the employeeId and try again.
 
 Example 404 response body(**JSON**):
@@ -1056,5 +1061,10 @@ Example 404 response body(**JSON**):
 }
 ```
 
-<h5 id="res_500">500:</h5>
+##### iii. 500:
+
 Request was unsuccessful. An unexpected error occured.
+
+## **Feedback**
+
+Thank you for taking the time to come this far. If you've noticed a bug, unusual behaviour, or typo while going through the code or documentation, please don't hesitate to create an issue or a pull request. Your feedback is valued and deeply appreciated.
