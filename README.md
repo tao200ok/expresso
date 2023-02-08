@@ -788,6 +788,8 @@ Permanently removes a menu from the system using its menuId, if that menu has no
 
 > NOTE: menuId is required for this request.
 
+> <span style="color: #bb0000">WARNING:</span> This action is irreversible.
+
 #### **Responses:**
 
 ##### 204:
@@ -1027,6 +1029,8 @@ Permanently removes an item related to a menu using the supplied menuItemId and 
 <span style="color: red">DELETE</span> `/menus/:menuId/menu-items/:menuItemId`
 
 > NOTE: Both menuId and menuItemId are required for this request.
+
+> <span style="color: #bb0000">WARNING:</span> This action is irreversible.
 
 #### **Responses:**
 
